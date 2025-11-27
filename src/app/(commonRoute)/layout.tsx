@@ -6,7 +6,7 @@ export default function CommonLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="bg-gray-50">
          {/* <DeskTopNavbar/> */}
         {children}
     </div>
