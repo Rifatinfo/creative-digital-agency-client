@@ -1,5 +1,8 @@
+"use client";
+
+
 import Link from "next/link";
-import { RiFacebookFill, RiGithubFill, RiInstagramFill,  RiLinkedinFill, RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
+import { RiFacebookFill, RiInstagramFill,  RiLinkedinFill, RiTwitterXFill, RiYoutubeFill } from "react-icons/ri";
 const icons = [
         {
             path : '/',

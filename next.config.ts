@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**', // allow any path under i.ibb.co
       },
+       {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        pathname: "/**",
+      },
       {
         protocol: "https",
         hostname: "cdn-icons-png.flaticon.com",

@@ -24,3 +24,4 @@ export function ServiceCard({ title, icon: Icon }: ServiceCardProps) {
     </div>
   );
 }
+

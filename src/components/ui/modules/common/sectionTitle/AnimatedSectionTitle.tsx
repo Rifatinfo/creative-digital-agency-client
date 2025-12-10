@@ -20,7 +20,7 @@ export default function AnimatedSectionTitle({
   className = "",
 }: AnimatedSectionTitleProps) {
   return (
-    <section className={`py-[70px] ${className}`}>
+    <section className={`md:py-[70px] md:mb-0 mb-16 ${className}`}>
       <div className="md:max-w-7xl md:mx-auto px-2 md:px-0">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

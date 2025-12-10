@@ -5,7 +5,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaPlay, FaPlayCircle } from "react-icons/fa";
+import { FaPlay} from "react-icons/fa";
 import { GoArrowUpRight } from "react-icons/go";
 import DeskTopNavbar from "@/components/shared/commonNavbar/DeskTopNavbar";
 
