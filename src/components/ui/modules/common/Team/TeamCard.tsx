@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsTwitter } from 'react-icons/bs';
-import { LiaLinkedin } from 'react-icons/lia';
+import { FaFacebook } from 'react-icons/fa';
 
 export interface TeamMember {
   id: number;
@@ -47,7 +47,7 @@ function TeamCard({ member }: TeamCardProps) {
           className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#c73450] transition-colors"
           aria-label={`${member.name}'s LinkedIn`}
         >
-          <LiaLinkedin className="w-3.5 h-3.5 text-gray-900" />
+          <FaFacebook className="w-3.5 h-3.5 text-gray-900" />
         </Link>
         <Link
           href={member.twitter}

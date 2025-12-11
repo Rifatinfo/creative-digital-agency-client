@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const whiteLogo = () => {
+const WhiteLogo = () => {
    return (
         <Link href="/">
             <Image src='https://res.cloudinary.com/dgp5rqeqh/image/upload/v1764158499/Social_verb_191_189_rtrl8z.png' width={70} height={70} alt=''></Image>
@@ -12,4 +12,4 @@ const whiteLogo = () => {
     );
 };
 
-export default whiteLogo;
+export default WhiteLogo;

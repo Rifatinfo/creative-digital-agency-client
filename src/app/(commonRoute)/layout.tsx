@@ -1,4 +1,5 @@
-// import DeskTopNavbar from "@/components/shared/commonNavbar/DeskTopNavbar";
+
+import Footer from "@/components/shared/Footer/Footer";
 
 export default function CommonLayout({
   children,
@@ -7,8 +8,8 @@ export default function CommonLayout({
 }>) {
   return (
     <div className="bg-gray-50">
-         {/* <DeskTopNavbar/> */}
         {children}
+        <Footer/>
     </div>
   );
 }

@@ -13,9 +13,7 @@ const HeroSlider = () => {
     const sliders = [
         { id: 1, image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1764152307/WhatsApp_Image_2025-11-26_at_3.42.41_PM_xozp5b.jpg', text: 'Feel the drive' },
         { id: 2, image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1764152192/WhatsApp_Image_2025-11-26_at_3.39.31_PM_fb9vts.jpg', text: 'Dive into what you love' },
-        // { id: 3, image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1764152089/WhatsApp_Image_2025-11-26_at_3.41.27_PM_pyl6ft.jpg', text: 'Dive into what you love' },
         { id: 3, image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1764152588/WhatsApp_Image_2025-11-26_at_3.37.27_PM_xfb1fs.jpg', text: 'Dive into what you love' },
-        
     ]
     return (
         <div>
@@ -62,6 +60,7 @@ const HeroSlider = () => {
                                 <button >
                                     <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#c73450] flex items-center justify-center shadow-lg">
                                         <FaPlay className="text-white text-2xl md:text-3xl ml-1" />
+                                        {/* <PlayButton/> */}
                                     </div>
                                 </button>
                             </div>
