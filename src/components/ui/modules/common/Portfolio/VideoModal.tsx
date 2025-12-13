@@ -11,6 +11,7 @@ interface VideoModalProps {
 }
 
 export function VideoModal({ isOpen, onClose, videoUrl, title }: VideoModalProps) {
+  if (!isOpen || !videoUrl) return null; 
   return (
     <div className="md:px-0 px-2">
       <Dialog
@@ -24,7 +25,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title }: VideoModalProps
           className="max-w-5xl w-full p-0  bg-black border-0 overflow-hidden pointer-events-auto"
         >
           {/* Close Button */}
-          <DialogClose className="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white opacity-70 hover:opacity-100 hover:bg-black/70">
+          <DialogClose className="absolute top-4 right-4 z-50 rounded-full bg-black/50 p-2 text-white opacity-70 hover:opacity-100 hover:bg-black/70 cursor-pointer">
             <X className="size-6" />
             {/* <span className="sr-only">Close</span> */}
           </DialogClose>

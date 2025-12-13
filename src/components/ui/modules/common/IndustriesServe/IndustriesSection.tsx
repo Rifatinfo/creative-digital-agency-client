@@ -13,7 +13,7 @@ import AnimatedSectionTitle from '../sectionTitle/AnimatedSectionTitle';
 const industries = [
   {
     icon: Smartphone,
-    name: 'Telecommunications',
+    name: 'Telecom',
     projects: '65+',
   },
   {
@@ -40,12 +40,12 @@ const industries = [
     icon: Zap,
     name: 'Electronics & Appliances',
     projects: '55+',
-  },
+  }
 ]
 export function IndustriesSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <motion.div
           initial={{
             opacity: 0,
@@ -84,12 +84,12 @@ export function IndustriesSection() {
               transition={{
                 delay: index * 0.05,
               }}
-              className="bg-gray-50 rounded-2xl p-6 text-center hover:bg-[#C73450]/5 hover:shadow-lg transition-all group"
+              className="bg-gray-50 rounded-2xl md:p-6 p-4 text-center hover:bg-[#C73450]/5 hover:shadow-lg transition-all group"
             >
               <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-primary/10 transition-colors">
                 <industry.icon className="text-[#C73450] group-hover:bg-[#C73450]/5 transition-colors" size={32} />
               </div>
-              <h3 className="font-bold text-gray-900 mb-1">{industry.name}</h3>
+              <h3 className="font-bold text-gray-900 text-[13px]  mb-1">{industry.name}</h3>
               <p className="text-sm text-gray-600">
                 {industry.projects} Projects
               </p>
