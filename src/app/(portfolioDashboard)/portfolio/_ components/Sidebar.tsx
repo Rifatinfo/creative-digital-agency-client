@@ -63,9 +63,9 @@ export function Sidebar({
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsSidebarOpen(false)}
-                  className="rounded hover:bg-[#c73450]/10 text-[#c73450]"
+                  className="rounded bg-[#c73450]/10 text-[#c73450] "
                 >
-                  <X size={20} />
+                  <X size={30} className="" />
                 </Button>
               </div>
 
