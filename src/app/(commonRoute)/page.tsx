@@ -2,6 +2,7 @@ import Blog from "@/components/ui/modules/common/Blog/Blog";
 import OurClients from "@/components/ui/modules/common/Clients/OurClients";
 import ContactSection from "@/components/ui/modules/common/Contact/ContactSection";
 import Feature from "@/components/ui/modules/common/Feature/Feature";
+import Gallery from "@/components/ui/modules/common/Gallery/Gallery";
 import GalleryTestimonial from "@/components/ui/modules/common/Gallery/GalleryTestimonial";
 import HeroSlider from "@/components/ui/modules/common/HeroSlider/HeroSlider";
 import { HowWeWork } from "@/components/ui/modules/common/HowWork/HowWeWork";
@@ -23,12 +24,13 @@ const HomePage = () => {
             <Portfolio/>
             <OurClients/>
             <IndustriesSection/>
-            <FeaturesSwiper/>
+            {/* <FeaturesSwiper/> */}
             <Feature/>
-            <GalleryTestimonial/>
-            <TeamSection />
+            {/* <GalleryTestimonial/> */}
+            <Gallery/>
+            {/* <TeamSection /> */}
             <TestimonialsSection/>
-            <ContactSection/>
+            {/* <ContactSection/> */}
             <Blog/>
         </div>
     );

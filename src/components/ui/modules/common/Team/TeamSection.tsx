@@ -69,40 +69,76 @@ export default function TeamSection() {
             linkedin: '#',
             twitter: '#',
         },
-
+        {
+            id: 9,
+            name: 'James Wilson',
+            role: 'Marketing Director',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765365593/IMG_1047_v8c1e5.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
+         {
+            id: 10,
+            name: 'David Park',
+            role: 'Tech Lead',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1760516348/file-1760516342093-505522654.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
+        {
+            id: 11,
+            name: 'Michael Chen',
+            role: 'Strategy Lead',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1760516348/file-1760516342093-505522654.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
+        {
+            id: 12,
+            name: 'Emily Rodriguez',
+            role: 'Design Director',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765365410/IMG_1012_jy8ukp.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
+         {
+            id: 13,
+            name: 'Emily Rodriguez',
+            role: 'Design Director',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765365410/IMG_1012_jy8ukp.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
+        {
+            id: 14,
+            name: 'David Park',
+            role: 'Tech Lead',
+            image: 'https://res.cloudinary.com/dgp5rqeqh/image/upload/v1760516348/file-1760516342093-505522654.jpg',
+            linkedin: '#',
+            twitter: '#',
+        },
     ];
 
     return (
         <div>
-            <div className="w-full bg-white relative overflow-hidden">
-                {/* Pink Corner Dream Background */}
-                <div
-                    className="md:absolute inset-0 z-0"
-                    style={{
-                        backgroundImage: `
-        radial-gradient(circle 600px at 100% 200px, #fce7f3, transparent)
-      `,
-                    }}
-                />
-                <section className="bg-white py-24 px-8">
+            <section className="bg-white px-8 py-10">
                     <div className="max-w-7xl mx-auto">
                         {/* Header */}
                         <div>
                             <AnimatedSectionTitle
                                 title="Meet Our Creative Minds"
-                                subtitle=" A diverse team of passionate professionals dedicated to your success"
+                                subtitle="A diverse team of passionate professionals dedicated to your success"
                             />
                         </div>
 
                         {/* Team grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-x-12 gap-y-16">
                             {teamMembers.map((member) => (
                                 <TeamCard key={member.id} member={member} />
                             ))}
                         </div>
                     </div>
                 </section>
-            </div>
         </div>
     );
 }

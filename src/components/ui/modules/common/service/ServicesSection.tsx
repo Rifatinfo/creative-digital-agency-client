@@ -51,19 +51,10 @@ const services: Service[] = [
 export function ServicesSection() {
     return (
 
-        <div className="min-h-screen w-full bg-white relative ">
+        <div className="w-full bg-white relative ">
             {/*  Diagonal Cross Grid Background */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage: `
-        linear-gradient(45deg, transparent 49%, #e5e7eb 49%, #e5e7eb 51%, transparent 51%),
-        linear-gradient(-45deg, transparent 49%, #e5e7eb 49%, #e5e7eb 51%, transparent 51%)
-      `,
-                    backgroundSize: "40px 40px",
-                }}
-            />
-            <section className="w-full max-w-7xl mx-auto relative z-50 py-10">
+            <div />
+            <section className="w-full max-w-7xl mx-auto relative z-50 py-6">
                 <div className="text-start ">
                     {/* heading */}
                     <AnimatedSectionTitle
