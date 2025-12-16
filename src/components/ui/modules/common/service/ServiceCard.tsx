@@ -1,23 +1,34 @@
+"use client";
 import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface ServiceCardProps {
   title: string;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
+  id: string;
 }
 
-export function ServiceCard({ title, icon: Icon }: ServiceCardProps) {
+export function ServiceCard({ title, icon: Icon, id }: ServiceCardProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/${id}`); 
+  };
+
   return (
-    <div className="text-[#C73450]
-  bg-white
-  border border-gray-100
-  rounded-2xl
-  p-8
-  cursor-pointer
-  font-space-grotesk
-  transition-all duration-300
-  hover:bg-[#C73450]/5
-  hover:shadow-lg">
+    <div 
+    onClick={handleClick}
+    className="text-[#C73450]
+    bg-white
+    border border-gray-100
+    rounded-2xl
+    p-8
+    cursor-pointer
+    font-space-grotesk
+    transition-all duration-300
+    hover:bg-[#C73450]/5
+    hover:shadow-lg">
       <div className="mb-8">
         <Icon className="w-20 h-20" />
       </div>

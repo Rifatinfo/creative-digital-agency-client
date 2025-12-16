@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import Chart from "./Chart";
 import { GoArrowUpRight } from "react-icons/go";
 

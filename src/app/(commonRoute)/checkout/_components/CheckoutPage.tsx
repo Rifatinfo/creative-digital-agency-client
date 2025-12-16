@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import CheckoutForm, { CheckoutFormData } from './CheckoutForm'
+import CheckoutForm from './CheckoutForm'
 import { OrderSummary } from './OrderSummary'
 import {  ServiceSelector } from './ServiceSelector';
 import Logo from '@/components/ui/modules/common/Logo/Logo';

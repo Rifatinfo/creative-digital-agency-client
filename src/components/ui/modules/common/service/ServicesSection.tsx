@@ -48,6 +48,13 @@ const services: Service[] = [
     },
 ];
 
+// content-development
+// digital-marketing
+// software-management
+// event-activation
+// web-app
+// branding-promotion
+
 export function ServicesSection() {
     return (
 
@@ -70,6 +77,7 @@ export function ServicesSection() {
                             title={service.title}
                             description={service.description}
                             icon={service.icon}
+                            id={service.id}
                         />
                     ))}
                 </div>
