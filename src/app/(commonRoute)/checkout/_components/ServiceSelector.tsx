@@ -53,7 +53,9 @@ const services: Service[] = [
   },
 ]
 const isSelected = false;
-
+const serviceSelect = (id : ServiceId) => {
+   console.log(id)
+}
 export function ServiceSelector() {
   return (
     <div className="mb-12">
@@ -64,6 +66,7 @@ export function ServiceSelector() {
         {services.map((service) => {
           return (
             <motion.button
+            onClick={() => serviceSelect(service.id)}
               key={service.id}
               whileHover={{
                 y: -2,
