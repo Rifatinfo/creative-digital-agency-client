@@ -1,0 +1,32 @@
+import LoginForm from "@/components/login-form";
+import Image from "next/image";
+
+
+const LoginPage = async () => {
+
+    return (
+        <div className="flex min-h-screen items-center justify-center md:gap-4">
+            <div className="w-full max-w-md space-y-6 rounded-lg border p-8 shadow-lg">
+                <div className="space-y-2 text-center">
+                    <h1 className="text-3xl font-bold">Welcome Back</h1>
+                    <p className="text-gray-500">
+                        Enter your credentials to access your account
+                    </p>
+                </div>
+                <LoginForm />
+            </div>
+            {/* image section  */}
+            <div>
+                <Image
+                    src="https://res.cloudinary.com/dgp5rqeqh/image/upload/v1766668332/Gemini_Generated_Image_j9qpc0j9qpc0j9qp_qnrw0k.png"
+                    width={680}
+                    height={780}
+                    alt="Login Image"
+                    className="rounded-lg md:block hidden"
+                />
+            </div>
+        </div>
+    );
+};
+
+export default LoginPage;

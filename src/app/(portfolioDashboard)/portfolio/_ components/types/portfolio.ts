@@ -9,6 +9,7 @@ export interface Project {
   date: string
   duration: string
   featured: boolean
+  brand? : string
 }
 
 export interface Category {

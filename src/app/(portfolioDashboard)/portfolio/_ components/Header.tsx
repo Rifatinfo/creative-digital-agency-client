@@ -5,7 +5,6 @@ import { Search, Menu, Plus, Bell, ArrowLeft, X, MenuIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Logo from '@/components/ui/modules/common/Logo/Logo'
-import { IoMenuSharp } from "react-icons/io5";
 
 
 interface HeaderProps {

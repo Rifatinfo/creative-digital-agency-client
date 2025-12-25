@@ -35,7 +35,9 @@ const tiers = {
     ],
   },
 }
-
+const handleSubscribe = () => {
+  
+}
 export function CheckoutPage() {
   const [selectedTier, setSelectedTier] = useState()
 
