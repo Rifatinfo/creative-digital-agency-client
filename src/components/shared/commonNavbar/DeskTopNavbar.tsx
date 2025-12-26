@@ -1,5 +1,6 @@
 "use client";
-import WhiteLogo from "@/components/ui/modules/common/Logo/WhiteLogo";
+import WhiteLogo from "@/components/ui/modules/common/Logo/whiteLogo";
+// import WhiteLogo from "@/components/ui/modules/common/Logo/WhiteLogo";
 import Hamburger from "./Hamburger";
 
 const DeskTopNavbar = () => {
