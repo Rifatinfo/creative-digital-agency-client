@@ -1,5 +1,5 @@
 "use client";
-import { useActionState, useEffect } from "react";
+import { useActionState} from "react";
 // import { toast } from "sonner";
 // import InputFieldError from "./shared/InputFieldError";
 import { Button } from "./ui/button";
@@ -7,14 +7,15 @@ import { Input } from "./ui/input";
 import { loginUser } from "@/services/auth/loginUser";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 
-const LoginForm = ({ redirect }: { redirect?: string }) => {
+const LoginForm = () => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
-
+  console.log(state);
+  
   
 
   return (
     <form action={formAction}>
-      {redirect && <input type="hidden" name="redirect" value={redirect} />}
+      {/* {redirect && <input type="hidden" name="redirect" value={redirect} />} */}
       <FieldGroup>
         <div className="grid grid-cols-1 gap-4">
           {/* Email */}
