@@ -2,8 +2,15 @@ import LoginForm from "@/components/login-form";
 import Image from "next/image";
 
 
-const LoginPage = async () => {
-
+const LoginPage = async ({
+  searchParams,
+}: {
+  searchParams?: Promise<{ redirect?: string }>;
+}) => {
+    const params = (await searchParams) || {};
+    console.log("params : ", params);
+    console.log(params.redirect);
+    
     return (
         <div className="flex min-h-screen items-center justify-center md:gap-4">
             <div className="w-full max-w-md space-y-6 rounded-lg border p-8 shadow-lg">
@@ -13,7 +20,7 @@ const LoginPage = async () => {
                         Enter your credentials to access your account
                     </p>
                 </div>
-                <LoginForm />
+                <LoginForm  redirect={params.redirect}/>
             </div>
             {/* image section  */}
             <div>

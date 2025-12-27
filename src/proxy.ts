@@ -80,25 +80,45 @@ export async function proxy(request: NextRequest) {
 
     //     userRole = verifiedToken.role;
     // }
-   
+
     if (accessToken) {
         try {
-            const decoded = jwt.verify(
+            // Verify the token
+            const verifiedToken = jwt.verify(
                 accessToken,
-                process.env.JWT_SECRET!
+                process.env.JWT_SECRET as string
             ) as JwtPayload;
 
-            userRole = decoded.role as UserRole;
+            userRole = verifiedToken.role as UserRole;
+        } catch (error) {
+            // If signature is invalid or token is expired, it comes here
+            console.error("JWT Error:", error);
 
-        } catch {
-            cookieStore.delete("accessToken");
-            cookieStore.delete("refreshToken");
-
-            return NextResponse.redirect(
-                new URL("/login", request.url)
-            );
+            const response = NextResponse.redirect(new URL('/login', request.url));
+            response.cookies.delete("accessToken");
+            response.cookies.delete("refreshToken");
+            return response;
         }
     }
+
+    // if (accessToken) {
+    //     try {
+    //         const decoded = jwt.verify(
+    //             accessToken,
+    //             process.env.JWT_SECRET!
+    //         ) as JwtPayload;
+
+    //         userRole = decoded.role as UserRole;
+
+    //     } catch {
+    //         cookieStore.delete("accessToken");
+    //         cookieStore.delete("refreshToken");
+
+    //         return NextResponse.redirect(
+    //             new URL("/login", request.url)
+    //         );
+    //     }
+    // }
 
     const routerOwner = getRouteOwner(pathname);
 

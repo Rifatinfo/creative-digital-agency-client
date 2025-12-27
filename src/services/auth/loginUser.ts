@@ -1,19 +1,16 @@
 "use server";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse } from "cookie";
-// import { serverFetch } from "@/lib/serverFetch";
-// import { zodValidator } from "@/lib/zodValidator";
 import { loginValidationZodSchema } from "@/zod/auth.validation";
-// import { setCookie } from "./tokenHandlers";
-// import jwt, { JwtPayload } from "jsonwebtoken";
-import jwt, { JwtPayload } from 'jsonwebtoken';
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export const loginUser = async (_currentState: any, formData: any): Promise<any> => {
     try {
-        // const redirectTo = formData.get('redirect') || null;
+        const redirectTo = formData.get('redirect') || null;
+        console.log(redirectTo);
+
         let accessTokenObject: null | any = null;
         let refreshTokenObject: null | any = null;
         const loginData = {
@@ -77,29 +74,47 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
             maxAge: parseInt(accessTokenObject['Max-Age']) || 1000 * 60 * 60 * 24 * 90,
             path: refreshTokenObject.Path || "/",
         });
-        // type UserRole = "ADMIN" | "CLIENT";
+        type UserRole = "ADMIN" | "CLIENT";
 
 
-        // const verifiedToken: JwtPayload | string = jwt.verify(accessTokenObject.accessToken, process.env.JWT_SECRET as string);
+        // 1. Wrap the verification in a try-catch block
+        let verifiedToken: JwtPayload | null = null;
 
-        // if (typeof verifiedToken === "string") {
-        //     throw new Error("Invalid token");
-        // }
-        
+        try {
+            const decoded = jwt.verify(
+                accessTokenObject.accessToken,
+                process.env.JWT_SECRET as string
+            );
 
+            if (typeof decoded !== "string") {
+                verifiedToken = decoded as JwtPayload;
+            }
+        } catch (error) {
+            console.error("JWT Verification Error inside loginUser:", error);
+            return {
+                success: false,
+                message: "Your session token is invalid. Please try logging in again."
+            };
+        }
+
+        // 2. Proceed only if verifiedToken exists
+        if (!verifiedToken) {
+            throw new Error("Invalid token structure");
+        }
+
+        const userRole = verifiedToken.role as UserRole;
         // const userRole: any = verifiedToken.role;
-        // const getDefaultDashboardRoute = (role: UserRole): string => {
-        //     if (role === "ADMIN") {
-        //         return "/admin/dashboard";
-        //     }
-        //     if (role === "CLIENT") {
-        //         return "/dashboard";
-        //     }
-        //     return "/";
-        // }
-        // const redirectPath = redirectTo ? redirectTo.toString() : getDefaultDashboardRoute(userRole);
-        // redirect(redirectPath);
-        return result;
+        const getDefaultDashboardRoute = (role: UserRole): string => {
+            if (role === "ADMIN") {
+                return "/admin/dashboard";
+            }
+            if (role === "CLIENT") {
+                return "/dashboard";
+            }
+            return "/";
+        }
+        const redirectPath = redirectTo ? redirectTo.toString() : getDefaultDashboardRoute(userRole as UserRole);
+        redirect(redirectPath);
     } catch (error: any) {
         // Re-throw NEXT_REDIRECT errors so Next.js can handle them
         if (error?.digest?.startsWith('NEXT_REDIRECT')) {
