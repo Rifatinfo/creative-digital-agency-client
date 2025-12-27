@@ -7,7 +7,7 @@ import { Input } from "./ui/input";
 import { loginUser } from "@/services/auth/loginUser";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 
-const LoginForm = () => {
+const LoginForm = ({redirect} : {redirect? : string}) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
   console.log(state);
   
