@@ -10,12 +10,12 @@ import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 const LoginForm = ({redirect} : {redirect? : string}) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
   console.log(state);
+  console.log("redirect : ", {redirect});
   
   
-
   return (
     <form action={formAction}>
-      {/* {redirect && <input type="hidden" name="redirect" value={redirect} />} */}
+      {redirect && <input type="hidden" name="redirect" value={redirect} />}
       <FieldGroup>
         <div className="grid grid-cols-1 gap-4">
           {/* Email */}
@@ -25,7 +25,7 @@ const LoginForm = ({redirect} : {redirect? : string}) => {
               id="email"
               name="email"
               type="email"
-              placeholder="m@example.com"
+              placeholder="Your Email"
               //   required
             />
 
