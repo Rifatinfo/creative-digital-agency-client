@@ -1,12 +1,13 @@
 "use client";
 import { Check, ShieldCheck } from 'lucide-react'
+import { useState } from 'react';
 interface OrderSummaryProps {
   serviceName: string
   tierName: string
   price: string
   features: string[]
   isValid: boolean
-  onProceed: () => void
+  onProceed: () => Promise<void> | void
 }
 export function OrderSummary({
   serviceName,
@@ -16,6 +17,14 @@ export function OrderSummary({
   isValid,
   onProceed,
 }: OrderSummaryProps) {
+
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async () => {
+    if(!isValid || loading) return;
+    setLoading(true);
+    await onProceed();
+  }
   return (
     <div className="sticky top-8">
       <div className="bg-white border border-[#2C2C2C]/10 p-8 shadow-sm">
@@ -48,7 +57,7 @@ export function OrderSummary({
         </div>
 
         <div className="mb-8">
-          <p className="text-xs uppercase tracking-widest text-[#2C2C2C]/50 mb-4">
+          <p className="text-xs uppercase text-[#c73450] font-semibold tracking-widest mb-4">
             Included Features
           </p>
           <ul className="space-y-3">
@@ -71,12 +80,39 @@ export function OrderSummary({
           </div>
 
           <button
-            onClick={onProceed}
+            onClick={handleClick}
             disabled={!isValid}
-            className={`w-full py-4 px-6 text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 ${isValid ? 'bg-[#c73450] text-white hover:bg-[#a02a40] shadow-lg hover:shadow-xl' : 'bg-[#2C2C2C]/10 text-[#2C2C2C]/40 cursor-not-allowed'}`}
+            className={`cursor-pointer w-full py-4 px-6 text-sm uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 ${isValid ? 'bg-[#c73450] text-white hover:bg-[#a02a40] shadow-lg hover:shadow-xl' : 'bg-[#2C2C2C]/10 text-[#2C2C2C]/40 cursor-not-allowed'}`}
           >
-            <ShieldCheck className="w-4 h-4" />
-            Proceed to Payment
+            {loading ? (
+              <>
+                <svg
+                  className="h-4 w-4 animate-spin"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  />
+                </svg>
+                Redirecting…
+              </>
+            ) : (
+              <>
+                <ShieldCheck className="w-4 h-4" />
+                Proceed to Payment
+              </>
+            )}
           </button>
 
           <p className="text-xs text-center text-[#2C2C2C]/40">

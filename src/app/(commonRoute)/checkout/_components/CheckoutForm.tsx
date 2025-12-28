@@ -1,6 +1,7 @@
 "use client";
+import { useState } from "react";
+import { z } from "zod";
 
-import React from 'react'
 export interface CheckoutFormData {
   fullName: string
   email: string
@@ -12,7 +13,36 @@ interface CheckoutFormProps {
   formData: CheckoutFormData
   onChange: (field: keyof CheckoutFormData, value: string) => void
 }
+
+const checkoutFormSchema = z.object({
+  fullName: z.string().min(2, "Full Name must be at least 2 characters"),
+  email: z.email("Invalid email address"),
+  company: z.string().optional(),
+  phone: z
+    .string()
+    // .regex(/^\+?\d{7,15}$/, "Invalid phone number")
+    .optional(),
+  projectDetails: z.string().optional()
+});
+
 export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
+  const [errors, setErrors] = useState<Partial<Record<keyof CheckoutFormData, string>>>({});
+
+  const handleFieldChange = (field : keyof CheckoutFormData, value : string) => {
+    onChange(field, value);
+    const result = checkoutFormSchema.safeParse({...formData, [field] : value});
+    if(!result.success){
+      const fieldErrors : Partial<Record<keyof CheckoutFormData, string>> = {};
+      result.error.issues.forEach((err) => {
+        const key = err.path[0] as keyof CheckoutFormData;
+        fieldErrors[key] = err.message;
+      });
+      setErrors(fieldErrors)
+    }else{
+      setErrors({});
+    }
+  }
+
   const inputClasses =
     'w-full bg-white border border-[#2C2C2C]/10 px-4 py-3 text-[#2C2C2C] focus:outline-none focus:border-[#c73450] focus:ring-1 focus:ring-[#c73450] transition-all duration-300 placeholder:text-[#2C2C2C]/30'
   const labelClasses =
@@ -32,11 +62,12 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               type="text"
               id="fullName"
               value={formData.fullName}
-              onChange={(e) => onChange('fullName', e.target.value)}
+              onChange={(e) => handleFieldChange('fullName', e.target.value)}
               className={inputClasses}
               placeholder="John Doe"
               required
             />
+            {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
           </div>
           <div>
             <label htmlFor="email" className={labelClasses}>
@@ -46,11 +77,12 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               type="email"
               id="email"
               value={formData.email}
-              onChange={(e) => onChange('email', e.target.value)}
+              onChange={(e) => handleFieldChange('email', e.target.value)}
               className={inputClasses}
-              placeholder="john@example.com"
+              placeholder="Your Email"
               required
             />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
         </div>
 
@@ -63,10 +95,11 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               type="text"
               id="company"
               value={formData.company}
-              onChange={(e) => onChange('company', e.target.value)}
+              onChange={(e) => handleFieldChange('company', e.target.value)}
               className={inputClasses}
-              placeholder="Acme Inc."
+              placeholder="Company Name"
             />
+            {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
           </div>
           <div>
             <label htmlFor="phone" className={labelClasses}>
@@ -76,10 +109,11 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               type="tel"
               id="phone"
               value={formData.phone}
-              onChange={(e) => onChange('phone', e.target.value)}
+              onChange={(e) => handleFieldChange('phone', e.target.value)}
               className={inputClasses}
-              placeholder="+1 (555) 000-0000"
+              placeholder="Phone Number"
             />
+            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
           </div>
         </div>
 
@@ -90,10 +124,11 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
           <textarea
             id="projectDetails"
             value={formData.projectDetails}
-            onChange={(e) => onChange('projectDetails', e.target.value)}
+            onChange={(e) => handleFieldChange('projectDetails', e.target.value)}
             className={`${inputClasses} min-h-[120px] resize-y`}
             placeholder="Tell us a bit about your goals and requirements..."
           />
+          {errors.projectDetails && <p className="text-red-500 text-sm mt-1">{errors.projectDetails}</p>}
         </div>
       </div>
     </div>
