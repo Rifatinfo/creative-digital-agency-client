@@ -1,18 +1,14 @@
-"use client";
+// "use client";
 
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { CheckoutPage } from "./_components/CheckoutPage";
+import { getContentService } from "./_components/getContentService";
 
-const Checkout = () => {
-    const router = useRouter();
-
-    const handleBack = () => {
-        router.back();
-    };
-
+const Checkout = async () => {
+  const service = await getContentService();
     return (
         <div>
-            <CheckoutPage onBack={handleBack} />
+            <CheckoutPage service={service} />
         </div>
     );
 };
