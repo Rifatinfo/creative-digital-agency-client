@@ -67,7 +67,7 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               placeholder="John Doe"
               required
             />
-            {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
+            {errors.fullName && <p className="text-[#c73450] text-sm mt-1">{errors.fullName}</p>}
           </div>
           <div>
             <label htmlFor="email" className={labelClasses}>
@@ -82,7 +82,7 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               placeholder="Your Email"
               required
             />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-[#c73450] text-sm mt-1">{errors.email}</p>}
           </div>
         </div>
 
@@ -99,7 +99,7 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               className={inputClasses}
               placeholder="Company Name"
             />
-            {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
+            {errors.company && <p className="text-[#c73450] text-sm mt-1">{errors.company}</p>}
           </div>
           <div>
             <label htmlFor="phone" className={labelClasses}>
@@ -113,7 +113,7 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
               className={inputClasses}
               placeholder="Phone Number"
             />
-            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+            {errors.phone && <p className="text-[#c73450] text-sm mt-1">{errors.phone}</p>}
           </div>
         </div>
 
@@ -128,7 +128,7 @@ export function CheckoutForm({ formData, onChange }: CheckoutFormProps) {
             className={`${inputClasses} min-h-[120px] resize-y`}
             placeholder="Tell us a bit about your goals and requirements..."
           />
-          {errors.projectDetails && <p className="text-red-500 text-sm mt-1">{errors.projectDetails}</p>}
+          {errors.projectDetails && <p className="text-[#c73450] text-sm mt-1">{errors.projectDetails}</p>}
         </div>
       </div>
     </div>
