@@ -1,4 +1,6 @@
 "use client";
+
+import React from 'react'
 import {
   FileText,
   TrendingUp,
@@ -52,11 +54,14 @@ const services: Service[] = [
     icon: Palette,
   },
 ]
-const isSelected = false;
-const serviceSelect = (id : ServiceId) => {
-   console.log(id)
+interface ServiceSelectorProps {
+  selectedService: ServiceId
+  onSelect: (id: ServiceId) => void
 }
-export function ServiceSelector() {
+export function ServiceSelector({
+  selectedService,
+  onSelect,
+}: ServiceSelectorProps) {
   return (
     <div className="mb-12">
       <h3 className="text-2xl font-serif text-[#2C2C2C] mb-6">
@@ -64,10 +69,11 @@ export function ServiceSelector() {
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {services.map((service) => {
+          const isSelected = selectedService === service.id
           return (
             <motion.button
-            onClick={() => serviceSelect(service.id)}
               key={service.id}
+              onClick={() => onSelect(service.id)}
               whileHover={{
                 y: -2,
               }}
