@@ -1,11 +1,12 @@
-"use client";
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import CheckoutForm from './CheckoutForm'
+import  { CheckoutForm, CheckoutFormData } from './CheckoutForm'
+import { ServiceId, ServiceSelector } from './ServiceSelector'
 import { OrderSummary } from './OrderSummary'
-import {  ServiceSelector } from './ServiceSelector';
-import Logo from '@/components/ui/modules/common/Logo/Logo';
-
+interface CheckoutPageProps {
+  initialTier?: string
+  onBack: () => void
+}
 const tiers = {
   Essential: {
     price: '$2,500',
@@ -35,18 +36,43 @@ const tiers = {
     ],
   },
 }
-const handleSubscribe = () => {
-  
+const serviceNames: Record<ServiceId, string> = {
+  content: 'Content Development',
+  marketing: 'Digital Marketing',
+  branding: 'Branding & Promotion',
+  web: 'Web & App Development',
+  event: 'Event & Activation',
+  creative: 'Creative Production',
 }
-export function CheckoutPage() {
-  const [selectedTier, setSelectedTier] = useState()
-
+export function CheckoutPage({
+  initialTier = 'Professional',
+  onBack,
+}: CheckoutPageProps) {
+  const [selectedService, setSelectedService] = useState<ServiceId>('content')
+  const [selectedTier, setSelectedTier] = useState(initialTier)
+  const [formData, setFormData] = useState<CheckoutFormData>({
+    fullName: '',
+    email: '',
+    company: '',
+    phone: '',
+    projectDetails: '',
+  })
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-
- 
+  const handleFormChange = (field: keyof CheckoutFormData, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }))
+  }
+  const isFormValid = formData.fullName.length > 0 && formData.email.length > 0
+  const handleProceed = () => {
+    alert('Proceeding to payment gateway...')
+  }
+  const currentTierData =
+    tiers[selectedTier as keyof typeof tiers] || tiers['Professional']
   return (
     <main className="min-h-screen w-full bg-[#FAF9F6] pb-24">
       {/* Header */}
@@ -54,13 +80,13 @@ export function CheckoutPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
-            
+              onClick={onBack}
               className="p-2 hover:bg-[#FAF9F6] rounded-full transition-colors text-[#2C2C2C]/60 hover:text-[#c73450]"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div className="text-xl font-serif font-bold tracking-tighter text-[#2C2C2C]">
-               <Logo/>
+              EDITORIAL.
             </div>
           </div>
           <div className="text-sm uppercase tracking-widest text-[#2C2C2C]/40 hidden md:block">
@@ -82,7 +108,10 @@ export function CheckoutPage() {
               </p>
             </div>
 
-            <ServiceSelector/>
+            <ServiceSelector
+              selectedService={selectedService}
+              onSelect={setSelectedService}
+            />
 
             {/* Tier Selection (Simplified for checkout context) */}
             <div className="mb-12">
@@ -93,6 +122,7 @@ export function CheckoutPage() {
                 {Object.keys(tiers).map((tier) => (
                   <button
                     key={tier}
+                    onClick={() => setSelectedTier(tier)}
                     className={`p-4 text-left border transition-all duration-300 ${selectedTier === tier ? 'border-[#c73450] bg-white ring-1 ring-[#c73450]' : 'border-[#2C2C2C]/10 bg-white hover:border-[#c73450]/30'}`}
                   >
                     <div className="flex justify-between items-center mb-2">
@@ -113,13 +143,18 @@ export function CheckoutPage() {
               </div>
             </div>
 
-            <CheckoutForm />
+            <CheckoutForm formData={formData} onChange={handleFormChange} />
           </div>
 
           {/* Sidebar */}
           <div className="lg:w-[380px] flex-shrink-0">
             <OrderSummary
-
+              serviceName={serviceNames[selectedService]}
+              tierName={selectedTier}
+              price={currentTierData.price}
+              features={currentTierData.features}
+              isValid={isFormValid}
+              onProceed={handleProceed}
             />
           </div>
         </div>
