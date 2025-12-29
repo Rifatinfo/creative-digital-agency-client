@@ -107,6 +107,11 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
         // const redirectPath = redirectTo ? redirectTo.toString() : getDefaultDashboardRoute(userRole as UserRole);
 
         // redirect(redirectPath);
+
+        if(!result.success){
+           throw new Error("Login Failed");
+        }
+        
         let redirectPath = getDefaultDashboardRoute(userRole);
 
         if (redirectTo) {
