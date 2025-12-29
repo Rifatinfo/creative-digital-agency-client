@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { getDefaultDashboardRoute, isValidRedirectForRole } from "@/lib/auth-utils";
+import { setCookie } from "./tokenHandlers";
 
 export const loginUser = async (_currentState: any, formData: any): Promise<any> => {
     try {
@@ -63,13 +64,13 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
 
         const cookieStore = await cookies();
 
-        cookieStore.set("accessToken", accessTokenObject.accessToken, {
+        await setCookie("accessToken", accessTokenObject.accessToken, {
             secure: true,
             httpOnly: true,
             maxAge: parseInt(accessTokenObject['Max-Age']) || 1000 * 60 * 60,
             path: accessTokenObject.Path || "/",
         });
-        cookieStore.set("refreshToken", refreshTokenObject.refreshToken, {
+        await setCookie("refreshToken", refreshTokenObject.refreshToken, {
             secure: true,
             httpOnly: true,
             maxAge: parseInt(accessTokenObject['Max-Age']) || 1000 * 60 * 60 * 24 * 90,
@@ -111,7 +112,7 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
         if(!result.success){
            throw new Error("Login Failed");
         }
-        
+
         let redirectPath = getDefaultDashboardRoute(userRole);
 
         if (redirectTo) {
@@ -121,7 +122,7 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
                 redirectPath = requestedPath;
             }
         }
-        redirect(redirectPath);
+        redirect(`${redirectPath}?loggedIn=true`);
     } catch (error: any) {
         // Re-throw NEXT_REDIRECT errors so Next.js can handle them
         if (error?.digest?.startsWith('NEXT_REDIRECT')) {
