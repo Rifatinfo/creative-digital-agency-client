@@ -5,6 +5,7 @@ import { loginValidationZodSchema } from "@/zod/auth.validation";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { getDefaultDashboardRoute, isValidRedirectForRole } from "@/lib/auth-utils";
 
 export const loginUser = async (_currentState: any, formData: any): Promise<any> => {
     try {
@@ -103,17 +104,18 @@ export const loginUser = async (_currentState: any, formData: any): Promise<any>
         }
 
         const userRole = verifiedToken.role as UserRole;
-        // const userRole: any = verifiedToken.role;
-        const getDefaultDashboardRoute = (role: UserRole): string => {
-            if (role === "ADMIN") {
-                return "/admin/dashboard";
+        // const redirectPath = redirectTo ? redirectTo.toString() : getDefaultDashboardRoute(userRole as UserRole);
+
+        // redirect(redirectPath);
+        let redirectPath = getDefaultDashboardRoute(userRole);
+
+        if (redirectTo) {
+            const requestedPath = redirectTo.toString();
+
+            if (isValidRedirectForRole(requestedPath, userRole)) {
+                redirectPath = requestedPath;
             }
-            if (role === "CLIENT") {
-                return "/dashboard";
-            }
-            return "/";
         }
-        const redirectPath = redirectTo ? redirectTo.toString() : getDefaultDashboardRoute(userRole as UserRole);
         redirect(redirectPath);
     } catch (error: any) {
         // Re-throw NEXT_REDIRECT errors so Next.js can handle them
