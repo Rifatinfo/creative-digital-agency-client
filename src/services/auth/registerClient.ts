@@ -39,7 +39,6 @@ export const registerClient = async (_currentState: any, formData: any): Promise
         body : newFormData,
       });
       const result = await res.json();
-
       if(result.success){
         await loginUser(_currentState, formData);
       }
