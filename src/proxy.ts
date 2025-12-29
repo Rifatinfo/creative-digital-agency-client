@@ -2,65 +2,10 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { getDefaultDashboardRoute, getRouteOwner, isAuthRoutes, UserRole } from './lib/auth-utils';
 
 
-type UserRole = "ADMIN" | "CLIENT";
 
-type RouteConfig = {
-    exact: string[],
-    patterns: RegExp[]
-}
-
-const authRoutes = ["/login", "/register", "/forget-password", "/reset-password"];
-
-const commonProtectedRoutes: RouteConfig = {
-    exact: ["/my-profile", "/settings", "/checkout"],
-    patterns: []
-}
-
-const adminProtectedRoutes: RouteConfig = {
-    patterns: [/^\/admin/],
-    exact: []
-}
-
-const customerProtectedRoutes: RouteConfig = {
-    patterns: [/^\/dashboard/],
-    exact: []
-}
-
-const isAuthRoutes = (pathname: string) => {
-    return authRoutes.some((route: string) => route === pathname);
-}
-
-const isRouteMatches = (pathname: string, routes: RouteConfig): boolean => {
-    if (routes.exact.includes(pathname)) {
-        return true;
-    }
-    return routes.patterns.some((pattern: RegExp) => pattern.test(pathname))
-}
-
-const getRouteOwner = (pathname: string): "ADMIN" | "CLIENT" | "COMMON" | null => {
-    if (isRouteMatches(pathname, adminProtectedRoutes)) {
-        return "ADMIN"
-    }
-    if (isRouteMatches(pathname, customerProtectedRoutes)) {
-        return "CLIENT"
-    }
-    if (isRouteMatches(pathname, commonProtectedRoutes)) {
-        return "COMMON"
-    }
-    return null;
-}
-
-const getDefaultDashboardRoute = (role: UserRole): string => {
-    if (role === "ADMIN") {
-        return "/admin/dashboard"
-    }
-    if (role === "CLIENT") {
-        return "/dashboard"
-    }
-    return "/"
-}
 
 export async function proxy(request: NextRequest) {
     const cookieStore = await cookies()
@@ -69,17 +14,7 @@ export async function proxy(request: NextRequest) {
     const accessToken = request.cookies.get("accessToken")?.value || null;
 
     let userRole: UserRole | null = null;
-    // if (accessToken) {
-    //     const verifiedToken: JwtPayload | string = jwt.verify(accessToken, process.env.JWT_SECRET as string);
-
-    //     if (typeof verifiedToken === "string") {
-    //         cookieStore.delete("accessToken");
-    //         cookieStore.delete("refreshToken");
-    //         return NextResponse.redirect(new URL('/login', request.url));
-    //     }
-
-    //     userRole = verifiedToken.role;
-    // }
+    
 
     if (accessToken) {
         try {
@@ -101,24 +36,6 @@ export async function proxy(request: NextRequest) {
         }
     }
 
-    // if (accessToken) {
-    //     try {
-    //         const decoded = jwt.verify(
-    //             accessToken,
-    //             process.env.JWT_SECRET!
-    //         ) as JwtPayload;
-
-    //         userRole = decoded.role as UserRole;
-
-    //     } catch {
-    //         cookieStore.delete("accessToken");
-    //         cookieStore.delete("refreshToken");
-
-    //         return NextResponse.redirect(
-    //             new URL("/login", request.url)
-    //         );
-    //     }
-    // }
 
     const routerOwner = getRouteOwner(pathname);
 
