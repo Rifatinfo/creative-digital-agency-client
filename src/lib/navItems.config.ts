@@ -47,47 +47,90 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
 
 
 export const getClientNavItems = async (): Promise<NavSection[]> => {
-    
-
-    return [
+  return [
+    {
+      title: "My Engagements",
+      items: [
         {
-            title: "Appointments",
-            items: [
-                {
-                    title: "My Appointments",
-                    href: "/dashboard/my-appointments",
-                    icon: "Calendar", // ✅ String
-                    badge:  undefined,
-                    roles: ["CLIENT"],
-                },
-                {
-                    title: "Book Appointment",
-                    href: "/consultation",
-                    icon: "ClipboardList", // ✅ String
-                     roles: ["CLIENT"],
-                },
-            ],
+          title: "Active Projects",
+          href: "/dashboard/projects",
+          icon: "Briefcase",
+          roles: ["CLIENT"],
         },
         {
-            title: "Medical Records",
-            items: [
-                {
-                    title: "My Prescriptions",
-                    href: "/dashboard/my-prescriptions",
-                    icon: "FileText", // ✅ String
-                     roles: ["CLIENT"],
-                },
-                {
-                    title: "Health Records",
-                    href: "/dashboard/health-records",
-                    icon: "Activity", // ✅ String
-                     roles: ["CLIENT"],
-                },
-            ],
+          title: "Service Orders",
+          href: "/dashboard/orders",
+          icon: "ShoppingBag",
+          roles: ["CLIENT"],
         },
-
-    ]
-}
+        {
+          title: "Project History",
+          href: "/dashboard/history",
+          icon: "History",
+          roles: ["CLIENT"],
+        },
+      ],
+    },
+    {
+      title: "Services",
+      items: [
+        {
+          title: "Content Development",
+          href: "/dashboard/services/content-development",
+          icon: "FileText",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Digital Marketing",
+          href: "/dashboard/services/digital-marketing",
+          icon: "TrendingUp",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Branding & Promotion",
+          href: "/dashboard/services/branding-promotion",
+          icon: "Palette",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Web & App Development",
+          href: "/dashboard/services/web-app",
+          icon: "Globe",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Event & Activation",
+          href: "/dashboard/services/event-activation",
+          icon: "Calendar",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Software Management",
+          href: "/dashboard/services/software-management",
+          icon: "Settings",
+          roles: ["CLIENT"],
+        },
+      ],
+    },
+    {
+      title: "Account",
+      items: [
+        {
+          title: "Invoices & Payments",
+          href: "/dashboard/billing",
+          icon: "CreditCard",
+          roles: ["CLIENT"],
+        },
+        {
+          title: "Profile Settings",
+          href: "/dashboard/profile",
+          icon: "User",
+          roles: ["CLIENT"],
+        },
+      ],
+    },
+  ];
+};
 
 export const adminNavItems: NavSection[] = [
     {
