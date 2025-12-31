@@ -1,4 +1,3 @@
-
 import AdminsFilter from "@/components/Admin/AdminsFilter";
 import AdminsManagementHeader from "@/components/Admin/AdminsManagementHeader";
 import AdminsTable from "@/components/Admin/AdminsTable";
@@ -16,13 +15,14 @@ const AdminAdminsManagementPage = async ({
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
   const adminsResult = await getAdmins(queryString);
-  console.log(adminsResult.data.meta.total);
-  
-  const totalPages = Math.ceil(
-    (adminsResult?.data?.meta?.total || 1) / (adminsResult?.data.meta?.limit || 1)
-  );
-  console.log(totalPages);
-  
+  // console.log(adminsResult?.data?.meta?.total);
+
+  const total = adminsResult?.data?.meta?.total ?? 0;
+  const limit = adminsResult?.data?.meta?.limit ?? 10;
+  const currentPage = Number(adminsResult?.data?.meta?.page) || 1;
+
+  const totalPages = Math.max(1, Math.ceil(total / limit));
+
   return (
     <div className="space-y-6">
       <AdminsManagementHeader />
@@ -31,10 +31,10 @@ const AdminAdminsManagementPage = async ({
       <AdminsFilter />
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
-        <AdminsTable admins={adminsResult?.data.data || []} />
+        <AdminsTable admins={adminsResult?.data?.data || []} />
         <TablePagination
-          currentPage={adminsResult?.meta?.page || 1}
-          totalPages={totalPages || 1}
+          currentPage={currentPage}
+          totalPages={totalPages}
         />
       </Suspense>
     </div>

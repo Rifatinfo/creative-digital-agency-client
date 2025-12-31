@@ -101,48 +101,63 @@ export async function getAdminById(id: string) {
     }
 }
 
-export async function updateAdmin(id: string, _prevState: any, formData: FormData) {
-    const validationPayload: any = {
-        name: formData.get("name") as string,
-        password: formData.get("password") as string,
-        profilePhoto: formData.get("file") as File,
+
+export async function updateAdmin(
+  id: string,
+  _prevState: any,
+  formData: FormData
+) {
+  const rawPayload = {
+    name: formData.get("name"),
+    password: formData.get("password"),
+  };
+
+  const parsed = updateAdminZodSchema.safeParse(rawPayload);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      message: "Validation failed",
+      errors: parsed.error.flatten().fieldErrors,
     };
+  }
 
+  const apiFormData = new FormData();
 
-    const validation = zodValidator(validationPayload, updateAdminZodSchema);
-    if (!validation.success && validation.errors) {
-        return {
-            success: validation.success,
-            message: "Validation failed",
-            formData: validationPayload,
-            errors: validation.errors,
-        };
+  // 🔥 BACKEND EXPECTS "data"
+  apiFormData.append("data", JSON.stringify(parsed.data));
+
+  if (formData.get("file")) {
+    apiFormData.append("file", formData.get("file") as File);
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/v1/admin/${id}`,
+      {
+        method: "PATCH",
+        body: apiFormData,
+        credentials: "include", 
+      }
+    );
+ 
+  
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(text);
+      return { success: false, message: "Unauthorized or server error" };
     }
-    if (!validation.data) {
-        return {
-            success: false,
-            message: "Validation failed",
-            formData: validationPayload,
-        };
-    }
 
-    try {
-        const response = await serverFetch.patch(`/admin/${id}`, {
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(validation.data),
-        });
-
-        const result = await response.json();
-        return result;
-    } catch (error: any) {
-        console.error("Update admin error:", error);
-        return {
-            success: false,
-            message: process.env.NODE_ENV === 'development' ? error.message : 'Failed to update admin',
-            formData: validationPayload
-        };
-    }
+    return await response.json();
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error.message,
+    };
+  }
 }
+
+
 
 export async function deleteAdmin(id: string) {
     try {

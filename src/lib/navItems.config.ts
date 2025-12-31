@@ -143,8 +143,8 @@ export const adminNavItems: NavSection[] = [
                 roles: ["ADMIN"],
             },
             {
-                title: "Patients",
-                href: "/admin/dashboard/patients-management",
+                title: "Client",
+                href: "/admin/dashboard/client-management",
                 icon: "Users", // ✅ String
                 roles: ["ADMIN"],
             },
@@ -154,13 +154,13 @@ export const adminNavItems: NavSection[] = [
         title: "Order Management",
         items: [
             {
-                title: "Appointments",
+                title: "Bookings",
                 href: "/admin/dashboard/appointments-management",
                 icon: "Calendar", // ✅ String
                 roles: ["ADMIN"],
             },
             {
-                title: "Schedules",
+                title: "Payments",
                 href: "/admin/dashboard/schedules-management",
                 icon: "Clock", // ✅ String
                 roles: ["ADMIN"],

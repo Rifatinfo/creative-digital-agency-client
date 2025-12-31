@@ -10,7 +10,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 // import { formatDateTime, getInitials } from "@/lib/formatters";
 import { IAdmin } from "@/types/admin.interface";
-import { Calendar, Mail, Phone, Shield, User } from "lucide-react";
+import {  Calendar, Mail, Phone, Shield, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 interface IAdminViewDialogProps {
@@ -69,10 +69,10 @@ const AdminViewDetailDialog = ({
           <div className="space-y-6">
             {/* Contact Information */}
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              {/* <div className="flex items-center gap-2 mb-4">
                 <Phone className="h-5 w-5 text-purple-600" />
                 <h3 className="font-semibold text-lg">Contact Information</h3>
-              </div>
+              </div> */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-muted/50 p-4 rounded-lg">
                 
                 {/* <div className="flex items-start gap-3">
