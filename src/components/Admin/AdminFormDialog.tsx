@@ -121,7 +121,7 @@ const AdminFormDialog = ({
 
 
                         {/* Password Field (Create Mode Only) */}
-                        {!isEdit && (
+                        {isEdit && (
                             <Field>
                                 <FieldLabel htmlFor="password">Password</FieldLabel>
                                 <Input
