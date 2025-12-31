@@ -51,7 +51,7 @@ export async function createAdmin(_prevState: any, formData: FormData) {
 
         const result = await response.json();
         console.log(result);
-        
+
         return result;
     } catch (error: any) {
         console.error("Create admin error:", error);
@@ -65,8 +65,18 @@ export async function createAdmin(_prevState: any, formData: FormData) {
 
 export async function getAdmins(queryString?: string) {
     try {
-        const response = await serverFetch.get(`/admin${queryString ? `?${queryString}` : ""}`);
+        const response = await fetch(
+            `http://localhost:5000/api/v1/admin${queryString ? `?${queryString}` : ""}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
         const result = await response.json();
+        console.log(result);
+        
         return result;
     } catch (error: any) {
         console.log(error);

@@ -16,11 +16,13 @@ const AdminAdminsManagementPage = async ({
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
   const adminsResult = await getAdmins(queryString);
-
+  console.log(adminsResult.data.meta.total);
+  
   const totalPages = Math.ceil(
-    (adminsResult?.meta?.total || 1) / (adminsResult?.meta?.limit || 1)
+    (adminsResult?.data?.meta?.total || 1) / (adminsResult?.data.meta?.limit || 1)
   );
-
+  console.log(totalPages);
+  
   return (
     <div className="space-y-6">
       <AdminsManagementHeader />
