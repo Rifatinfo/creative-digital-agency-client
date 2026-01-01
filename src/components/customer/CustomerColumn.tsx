@@ -27,7 +27,7 @@ export const customerColumns = (router: ReturnType<typeof useRouter>): Column<IC
     accessor: (customer) => (
       <button
         className={`px-2 py-1 rounded text-white ${
-          customer.status === "ACTIVE" ? "bg-green-500" : "bg-red-500"
+          customer.status === "ACTIVE" ? "bg-black rounded-2xl text-white cursor-pointer" : "bg-[#c73450] rounded-2xl text-white cursor-pointer"
         }`}
         onClick={async () => {
           const newStatus = customer.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
@@ -41,7 +41,7 @@ export const customerColumns = (router: ReturnType<typeof useRouter>): Column<IC
           }
         }}
       >
-        {customer.status === "ACTIVE" ? "Deactivate" : "Activate"}
+        {customer.status === "ACTIVE" ? "INACTIVE" : "ACTIVE"}
       </button>
     ),
   },
