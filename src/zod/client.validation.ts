@@ -11,3 +11,4 @@ export const createCustomerZodSchema = z.object({
         .instanceof(File)
         .refine((file) => file.size > 0, "Profile photo is required"),
 });
+
