@@ -176,9 +176,9 @@ export async function deleteCustomer(id: string) {
         // const result = await response.json();
         // return result;
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/${id}`,
+            `http://localhost:5000/api/v1/user/${id}`,
             {
-                method: 'PATCH',
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },

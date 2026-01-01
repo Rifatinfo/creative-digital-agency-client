@@ -67,7 +67,7 @@ const CustomerTable = ({ customer }: CustomerTableProps) => {
         data={customer}
         columns={customerColumns(router)}
         onView={handleView}
-        onEdit={handleEdit}
+        // onEdit={handleEdit}
         onDelete={handleDelete}
         getRowKey={(customer) => customer.id!}
         emptyMessage="No customer found"
