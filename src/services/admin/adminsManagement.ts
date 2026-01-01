@@ -115,11 +115,16 @@ export async function updateAdmin(
   const parsed = updateAdminZodSchema.safeParse(rawPayload);
 
   if (!parsed.success) {
-    return {
-      success: false,
-      message: "Validation failed",
-      errors: parsed.error.flatten().fieldErrors,
-    };
+    // return {
+    //   success: false,
+    //   message: "Validation failed",
+    //   errors: parsed.error.flatten().fieldErrors,
+    // };
+     return {
+            success: false,
+            message: "Validation failed",
+            formData: parsed,
+        }
   }
 
   const apiFormData = new FormData();
