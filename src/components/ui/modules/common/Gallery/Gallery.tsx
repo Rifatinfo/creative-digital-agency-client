@@ -36,7 +36,7 @@ export const imagesArray: GalleryImage[] = [
     id: "img-4",
     alt: "Gallery image 4",
     caption: "Gallery image 4 description",
-    src: "https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765457667/WhatsApp_Image_2025-12-11_at_6.51.07_PM_mbp9do.jpg",
+    src: "https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765457666/WhatsApp_Image_2025-12-11_at_6.51.08_PM_2_oyght4.jpg",
   },
   {
     id: "img-5",
@@ -90,7 +90,7 @@ export const imagesArray: GalleryImage[] = [
     id: "img-13",
     alt: "Gallery image 13",
     caption: "Gallery image 13 description",
-    src: "https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765459313/Atom_bite_me_c6vycw.jpg",
+    src: "https://res.cloudinary.com/dgp5rqeqh/image/upload/v1765457666/WhatsApp_Image_2025-12-11_at_6.51.09_PM_so6ml1.jpg",
   },
   {
     id: "img-14",
@@ -120,7 +120,7 @@ export const imagesArray: GalleryImage[] = [
 
 const Gallery: React.FC = () => {
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div>
         <AnimatedSectionTitle
           title="Our Gallery and Encourage Field"

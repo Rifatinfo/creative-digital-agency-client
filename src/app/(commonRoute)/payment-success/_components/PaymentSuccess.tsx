@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface PaymentResult {
   booking: any;
@@ -43,7 +44,7 @@ export function PaymentSuccess() {
           }
         );
 
-        const text = await res.text(); 
+        const text = await res.text();
 
         let data;
         try {
@@ -237,18 +238,22 @@ export function PaymentSuccess() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={itemVariants}
             >
-              <Button size="lg" className="w-full sm:w-auto group">
-                View Dashboard
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
-                <Download className="mr-2 w-4 h-4" />
-                Download Receipt
-              </Button>
+              <Link href="/dashboard">
+                <Button size="lg" className="w-full sm:w-auto group cursor-pointer">
+                  View Dashboard
+                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  <Download className="mr-2 w-4 h-4" />
+                  Download Receipt
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </>
