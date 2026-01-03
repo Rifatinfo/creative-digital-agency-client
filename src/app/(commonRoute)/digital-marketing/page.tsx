@@ -6,36 +6,52 @@ import WithoutHomeNavbar from "@/components/shared/commonNavbar/WithoutHomeNavba
 
 const tiers = [
   {
-    name: "Essential",
-    price: "2,500 tk",
+    name: "Starter Branding",
+    price: "3,500 tk",
     period: "/month",
-    description: "Foundational content for growing brands.",
+    description: "Perfect for new brands starting their identity journey.",
     features: [
-      "2 Long-form Articles (1,500 words)",
-      "4 Blog Posts (800 words)",
-      "Basic SEO Optimization",
-      "Monthly Content Calendar",
+      "Brand Voice & Tone Guidelines",
+      "Logo Usage & Color Direction",
+      "2 Promotional Post Designs",
+      "Basic Caption & Hashtag Strategy",
       "1 Revision Round",
     ],
-    cta: "Start Essential",
+    cta: "Start Branding",
   },
   {
-    name: "Professional",
-    price: "4,800 tk",
+    name: "Growth Branding",
+    price: "6,500 tk",
     period: "/month",
-    description: "Strategic growth and authority building.",
+    description: "Consistent branding with active promotion support.",
     features: [
-      "4 Long-form Articles (2,000 words)",
-      "8 Blog Posts (1,000 words)",
-      "Advanced SEO & Competitor Analysis",
-      "Quarterly Strategy Workshop",
-      "Social Media Micro-copy",
+      "Complete Brand Identity Kit",
+      "6 Promotional Post Designs",
+      "Platform-wise Caption Strategy",
+      "Monthly Promotion Plan",
+      "Audience Targeting Guidance",
       "2 Revision Rounds",
     ],
-    cta: "Start Professional",
+    cta: "Grow My Brand",
     highlighted: true,
   },
-]
+  {
+    name: "Authority Branding",
+    price: "11,000 tk",
+    period: "/month",
+    description: "High-impact branding for scale and authority.",
+    features: [
+      "Advanced Brand Strategy Document",
+      "12 Promotional Creatives (Static/Reels)",
+      "Ad Copywriting (Meta / Google)",
+      "Campaign Funnel Planning",
+      "Weekly Performance Review",
+      "Unlimited Revisions",
+    ],
+    cta: "Build Authority",
+  },
+];
+
 
 const DigitalMarketingPage = () => {
     return (

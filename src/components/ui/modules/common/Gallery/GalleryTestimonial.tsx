@@ -55,7 +55,7 @@ const GalleryTestimonial = () => {
     const t = testimonials[index];
 
     return (
-        <div className="max-w-7xl mx-auto px-6 md:px-12 my-16">
+        <div className="max-w-7xl mx-auto my-16">
             <AnimatedSectionTitle
                 title="Our Gallery and Encourage Field"
                 subtitle="Let's start our work"
@@ -87,20 +87,7 @@ const GalleryTestimonial = () => {
                 </div>
 
                 {/* RIGHT SIDE — IMAGE */}
-                {/* <div className="w-full md:w-1/2 relative flex justify-end items-center">
-                    <div className="w-full h-64 md:w-96 md:h-96 overflow-hidden relative">
-                        <Image
-                            src={t.photo}
-                            alt="testimonial image"
-                            fill
-                            className="object-cover mx-auto"
-                        />
-
-                        <div className="absolute top-4 right-4 bg-[#c73450] text-white p-3 rounded-full">
-                            <FaQuoteLeft className="text-xl" />
-                        </div>
-                    </div>
-                </div> */}
+               
                 <div className="w-full md:w-1/2 flex justify-end items-center">
                     <div className="grid grid-cols-2 gap-4 w-full md:w-[500px]">
 

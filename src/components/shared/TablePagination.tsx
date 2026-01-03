@@ -53,9 +53,10 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
           } else {
             pageNumber = currentPage - 2 + index;
           }
+
           return (
             <Button
-              key={pageNumber}
+              key={pageNumber} 
               variant={pageNumber === currentPage ? "default" : "outline"}
               size="sm"
               onClick={() => navigateToPage(pageNumber)}
@@ -86,5 +87,6 @@ const TablePagination = ({ currentPage, totalPages }: TablePaginationProps) => {
     </div>
   );
 };
+
 
 export default TablePagination;

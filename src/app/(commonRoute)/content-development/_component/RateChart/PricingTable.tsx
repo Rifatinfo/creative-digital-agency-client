@@ -1,5 +1,6 @@
 "use client";
 import { Check } from 'lucide-react'
+import Link from 'next/link';
 interface PricingTableProps {
   onNavigateToCheckout?: (tierName: string) => void
 }
@@ -105,12 +106,14 @@ export function PricingTable({ onNavigateToCheckout }: PricingTableProps) {
               ))}
             </ul>
 
-            <button
-              onClick={() => onNavigateToCheckout?.(tier.name)}
-              className={`w-full py-4 px-6 text-sm uppercase tracking-widest transition-all duration-300 ${tier.highlighted ? 'bg-[#c73450] text-white hover:bg-[#a02a40]' : 'border border-[#2C2C2C] text-[#2C2C2C] hover:bg-[#c73450] hover:border-[#c73450] hover:text-white'}`}
-            >
-              {tier.cta}
-            </button>
+            <Link href="/checkout" passHref>
+              <button
+                onClick={() => onNavigateToCheckout?.(tier.name)}
+                className={`w-full cursor-pointer py-4 px-6 text-sm uppercase tracking-widest transition-all duration-300 ${tier.highlighted ? 'bg-[#c73450] text-white hover:bg-[#a02a40]' : 'border border-[#2C2C2C] text-[#2C2C2C] hover:bg-[#c73450] hover:border-[#c73450] hover:text-white'}`}
+              >
+                {tier.cta}
+              </button>
+            </Link>
           </div>
         ))}
       </div>

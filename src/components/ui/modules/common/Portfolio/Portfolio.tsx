@@ -210,7 +210,7 @@ const projects: Project[] = [
 ];
 const Portfolio = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="max-w-7xl mx-auto bg-white">
       <PortfolioSection
         categories={categories}
         projects={projects}

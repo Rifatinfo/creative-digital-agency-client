@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import svgPaths from "../../about/_components/svg-pj5qnqbmbd";
+import svgPaths from "../../About/_components/svg-pj5qnqbmbd";
 
 import Image from "next/image";
 
@@ -15,14 +15,14 @@ function CheckIcon() {
             <g clipPath="url(#clip0_1_73)">
                 <path
                     d={svgPaths.p14d24500}
-                    stroke="#F97316"
+                    stroke="#c73450"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
                 />
                 <path
                     d={svgPaths.p3e012060}
-                    stroke="#F97316"
+                    stroke="#c73450"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
@@ -83,8 +83,8 @@ export function AboutSection() {
                     <div className="flex flex-col gap-8">
                         {/* Label */}
                         <div className="flex items-center gap-3">
-                            <div className="w-12 h-[2px] bg-[#f97316]" />
-                            <span className="text-[#ea580c] font-bold text-xs uppercase tracking-wide">
+                            <div className="w-12 h-[2px] bg-[#c73450]" />
+                            <span className="text-[#c73450] font-bold text-xs uppercase tracking-wide">
                                 About Us
                             </span>
                         </div>
@@ -93,7 +93,7 @@ export function AboutSection() {
                         <div>
                             <h2 className="text-[#0f172a] text-[40.8px] leading-[48px] font-bold">
                                 Innovating at the speed of{" "}
-                                <span className="text-[#4f46e5]">culture.</span>
+                                <span className="text-[#c73450]">culture.</span>
                             </h2>
                         </div>
 
@@ -127,7 +127,7 @@ export function AboutSection() {
                         <div className="mt-4">
                             <Button
                                 size="lg"
-                                className="bg-[#ea580c] hover:bg-[#ea580c]/90 text-white shadow-[0px_2px_4px_-2px_rgba(0,0,0,0.1),0px_4px_6px_-1px_rgba(0,0,0,0.1)] px-8 h-12 rounded-lg font-semibold text-[13.6px]"
+                                className="bg-[#c73450] hover:bg-[#c73450]/90 text-white shadow-[0px_2px_4px_-2px_rgba(0,0,0,0.1),0px_4px_6px_-1px_rgba(0,0,0,0.1)] px-8 h-12 rounded-lg font-semibold text-[13.6px]"
                             >
                                 Learn More About Us
                             </Button>
