@@ -1,36 +1,36 @@
 import AdminsFilter from "@/components/Admin/AdminsFilter";
-import AdminsManagementHeader from "@/components/Admin/AdminsManagementHeader";
-import AdminsTable from "@/components/Admin/AdminsTable";
+import PaymentsManagementHeader from "@/components/payment/PaymentManagementHeader";
+import PaymentsTable from "@/components/payment/PaymentTable";
 import TablePagination from "@/components/shared/TablePagination";
 import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
-import { getAdmins } from "@/services/admin/adminsManagement";
+import { getPayments } from "@/services/payment/paymentManagement";
 import { Suspense } from "react";
 
-const AdminAdminsManagementPage = async ({
+const PaymentManagementPage = async ({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
-  const adminsResult = await getAdmins(queryString);
-
-  const total = adminsResult?.data?.meta?.total ?? 0;
-  const limit = adminsResult?.data?.meta?.limit ?? 10;
-  const currentPage = Number(adminsResult?.data?.meta?.page) || 1;
-
+  const paymentsResult = await getPayments(queryString);
+  console.log(paymentsResult?.data);
+  
+  const total = paymentsResult?.data?.meta?.total ?? 0;
+  const limit = paymentsResult?.data?.meta?.limit ?? 10;
+  const currentPage = Number(paymentsResult?.data?.meta?.page) || 1;
   const totalPages = Math.max(1, Math.ceil(total / limit));
 
   return (
     <div className="space-y-6">
-      <AdminsManagementHeader />
+      <PaymentsManagementHeader />
 
       {/* Search, Filters */}
       <AdminsFilter />
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
-        <AdminsTable admins={adminsResult?.data?.data || []} />
+        <PaymentsTable payment={paymentsResult?.data || []} />
         <TablePagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -40,4 +40,4 @@ const AdminAdminsManagementPage = async ({
   );
 };
 
-export default AdminAdminsManagementPage;
+export default PaymentManagementPage;
