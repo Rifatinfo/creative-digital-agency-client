@@ -75,7 +75,7 @@ export function ChartAreaInteractive({ chartData, total }: ChartProps) {
               dataKey="enrollments"
               barSize={40}                 // 🔥 FIX
               radius={[6, 6, 0, 0]}
-              fill="#d97757"
+              fill="#c73450"
             />
           </BarChart>
         </ChartContainer>
