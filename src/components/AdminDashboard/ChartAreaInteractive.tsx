@@ -57,7 +57,6 @@ export function ChartAreaInteractive({ chartData, total }: ChartProps) {
                 })
               }
             />
-
             <ChartTooltip
               content={
                 <ChartTooltipContent
