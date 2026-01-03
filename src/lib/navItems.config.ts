@@ -151,18 +151,29 @@ export const adminNavItems: NavSection[] = [
         ],
     },
     {
+        title: "Campaign Management",
+        items: [
+            {
+                title: "Campaign",
+                href: "/admin/dashboard/campaign-management",
+                icon: "Shield", // ✅ String
+                roles: ["ADMIN"],
+            },
+        ],
+    },
+    {
         title: "Order Management",
         items: [
             {
                 title: "Bookings",
-                href: "/admin/dashboard/appointments-management",
-                icon: "Calendar", // ✅ String
+                href: "/admin/dashboard/booking-management",
+                icon: "Payment", // ✅ String
                 roles: ["ADMIN"],
             },
             {
                 title: "Payments",
-                href: "/admin/dashboard/schedules-management",
-                icon: "Clock", // ✅ String
+                href: "/admin/dashboard/payment-management",
+                icon: "Payment", // ✅ String
                 roles: ["ADMIN"],
             },
         ],

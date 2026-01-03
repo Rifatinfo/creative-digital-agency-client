@@ -1,4 +1,5 @@
 export function getInitials(name: string): string {
+    if (!name) return "";
     return name
         .split(" ")
         .map((n) => n[0])
@@ -20,13 +21,8 @@ export function formatDateTime(date: string | Date): string {
 
 export function queryStringFormatter(searchParamsObj: { [key: string]: string | string[] | undefined }): string {
     let queryString = "";
-    // {searchTerm: "John", speciality: "Cardiology"}
-    // after entries: [ ["searchTerm", "John"], ["speciality", "Cardiology"] ]
     const queryArray = Object.entries(searchParamsObj).map(([key, value]) => {
         if (Array.isArray(value)) {
-            // { speciality: ["Cardiology", "Neurology"] } 
-            // ["Cardiology", "Neurology"]
-            // ?speciality=Cardiology&speciality=Neurology
             return value.map((v) => `${key}=${encodeURIComponent(v)}`).join("&");
         }
         else if (value !== undefined) {
@@ -34,6 +30,6 @@ export function queryStringFormatter(searchParamsObj: { [key: string]: string | 
         }
         return "";
     });
-    queryString = queryArray.filter((q) => q !== "").join("&"); // searchTerm=John&speciality=Cardiology&speciality=Neurology
+    queryString = queryArray.filter((q) => q !== "").join("&"); 
     return queryString;
 }
