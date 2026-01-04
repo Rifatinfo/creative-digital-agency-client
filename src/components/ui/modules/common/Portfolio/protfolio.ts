@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export async function getAdmins() {
+export async function getProtfolio() {
     try {
         const response = await fetch(
             `http://localhost:5000/api/v1/campaign`,
@@ -11,7 +11,7 @@ export async function getAdmins() {
             }
         );
         const result = await response.json();
-        console.log(result?.data?.data);
+        // console.log(result?.data?.data);
         
         return result;
     } catch (error: any) {

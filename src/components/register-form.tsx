@@ -12,7 +12,7 @@ import { toast } from "sonner";
 
 const RegisterForm = () => {
 const [state, formAction, isPending] = useActionState(registerClient, null);
-  console.log(state, "state");
+  // console.log(state, "state");
   const getFieldError = (fieldName: string) => {
     if (state && state.errors) {
       const error = state.errors.find((err: any) => err.field === fieldName);

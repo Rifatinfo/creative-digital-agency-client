@@ -15,7 +15,7 @@ const PaymentManagementPage = async ({
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
   const paymentsResult = await getPayments(queryString);
-  console.log(paymentsResult?.data);
+  // console.log(paymentsResult?.data);
   
   const total = paymentsResult?.data?.meta?.total ?? 0;
   const limit = paymentsResult?.data?.meta?.limit ?? 10;

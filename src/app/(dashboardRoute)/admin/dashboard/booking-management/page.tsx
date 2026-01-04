@@ -15,7 +15,7 @@ const BookingManagementPage = async ({
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
   const bookingsResult = await getBookings(queryString);
-  console.log(bookingsResult?.data);
+  // console.log(bookingsResult?.data);
   
   const total = bookingsResult?.data?.meta?.total ?? 0;
   const limit = bookingsResult?.data?.meta?.limit ?? 10;

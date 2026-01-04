@@ -46,7 +46,7 @@ const PortfolioDashboard = () => {
 
                 const data = await res.json();
 
-                console.log(data?.data?.data);
+                // console.log(data?.data?.data);
                 
                 setProjects(data?.data?.data) 
             } catch (err: any) {

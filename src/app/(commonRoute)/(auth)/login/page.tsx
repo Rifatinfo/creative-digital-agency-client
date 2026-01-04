@@ -8,8 +8,7 @@ const LoginPage = async ({
   searchParams?: Promise<{ redirect?: string }>;
 }) => {
     const params = (await searchParams) || {};
-    console.log("params : ", params);
-    console.log(params.redirect);
+    
     
     return (
         <div className="flex min-h-screen items-center justify-center md:gap-4">

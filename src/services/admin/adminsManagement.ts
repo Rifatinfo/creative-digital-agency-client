@@ -50,7 +50,7 @@ export async function createAdmin(_prevState: any, formData: FormData) {
         );
 
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
 
         return result;
     } catch (error: any) {
@@ -75,7 +75,7 @@ export async function getAdmins(queryString?: string) {
             }
         );
         const result = await response.json();
-        console.log(result);
+        // console.log(result);
         
         return result;
     } catch (error: any) {

@@ -11,7 +11,7 @@ import { setCookie } from "./tokenHandlers";
 export const loginUser = async (_currentState: any, formData: any): Promise<any> => {
     try {
         const redirectTo = formData.get('redirect') || null;
-        console.log(redirectTo);
+        // console.log(redirectTo);
 
         let accessTokenObject: null | any = null;
         let refreshTokenObject: null | any = null;

@@ -58,7 +58,6 @@ export function PaymentSuccess() {
         }
 
         setResult(data.data);
-        console.log("Payment Completed and Booking Confirmed");
       } catch (err: any) {
         console.error(err);
         setError(err.message || "Something went wrong");

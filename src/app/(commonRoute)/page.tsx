@@ -10,7 +10,8 @@ import { ServicesSection } from "@/components/ui/modules/common/service/Services
 import { TestimonialsSection } from "@/components/ui/modules/common/Testimonial/TestimonialsSection";
 import Counting from "@/components/ui/modules/common/WorkCounting/Counting";
 
-const HomePage = () => {
+const HomePage = async () => {
+
     return (
         <div>
             <HeroSlider/>
