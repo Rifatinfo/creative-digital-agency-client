@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { Search, Menu, Plus, Bell, ArrowLeft, X, MenuIcon } from 'lucide-react'
+import { Search, Menu, Plus, Bell, ArrowLeft, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Logo from '@/components/ui/modules/common/Logo/Logo'

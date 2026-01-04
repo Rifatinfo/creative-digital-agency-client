@@ -58,21 +58,6 @@ const DashboardPage = () => {
 
   return (
     <div className="space-y-6 p-6">
-      {/* Meta Cards
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-        {metaCards.map((card) => (
-          <Card key={card.title} className="p-4">
-            <CardHeader>
-              <CardTitle>{card.title}</CardTitle>
-              <CardDescription>
-                <span className="text-xl font-bold">{card.value}</span>
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        ))}
-      </div> */}
-      {/* Meta Cards */}
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {metaCards.map((card) => (
           <Card
