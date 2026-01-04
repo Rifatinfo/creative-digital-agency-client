@@ -7,7 +7,7 @@ import { LiaLinkedin } from "react-icons/lia";
 const Footer = () => {
     return (
         <div className="bg-gray-900 text-white p-8">
-            <footer className="container mx-auto">
+            <footer className="max-w-7xl mx-auto">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* Company Info */}

@@ -26,7 +26,7 @@ export function PortfolioSection({
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section className="max-w-7xl mx-auto ">
+    <section>
       {/* Header */}
 
       <div>

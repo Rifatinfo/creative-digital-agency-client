@@ -5,7 +5,6 @@ import { VideoModal } from "./VideoModal";
 import Image from "next/image";
 import PlayButton from "./PlayButton";
 
-
 export interface Project {
   id: string;
   title: string;
@@ -14,7 +13,7 @@ export interface Project {
   rating: string;
   thumbnailColor: string;
   videoUrl?: string;
-  thumbnail : string;
+  thumbnail: string;
 }
 
 interface ProjectCardProps {
@@ -23,28 +22,36 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
- 
+
   const handlePlayClick = () => {
     if (project.videoUrl) setIsVideoOpen(true);
-
   };
 
   return (
-    <div>
+    <div className="px-4 md:px-0">
       <div onClick={handlePlayClick}>
-        <div className="relative md:-space-y-2 space-y-2 cursor-pointer">
-          <figure>
+        <div className="relative w-full overflow-hidden rounded-2xl cursor-pointer">
+          {/* Image container */}
+          <div className="relative w-full aspect-video">
             <Image
-              className="rounded-2xl"
-              width={292} height={164}
               src={project.thumbnail}
-              alt="Shoes" />
-          </figure>
-           <PlayButton></PlayButton>
+              alt={project.title}
+              fill
+              className="object-cover rounded-2xl"
+              sizes="(max-width: 640px) 100vw,
+               (max-width: 1024px) 50vw,
+               33vw"
+              priority
+            />
+          </div>
+
+          {/* Play Button */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <PlayButton />
+          </div>
         </div>
 
         {/* play button */}
-       
       </div>
       {project.videoUrl && (
         <VideoModal

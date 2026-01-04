@@ -12,7 +12,6 @@ export async function getBookings(queryString?: string) {
             }
         );
         const result = await response.json();
-        console.log(result);
         
         return result;
     } catch (error: any) {

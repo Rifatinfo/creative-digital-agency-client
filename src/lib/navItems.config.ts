@@ -52,8 +52,14 @@ export const getClientNavItems = async (): Promise<NavSection[]> => {
       title: "My Engagements",
       items: [
         {
+          title: "Orders History Profile",
+          href: "/dashboard/my-profile",
+          icon: "History",
+          roles: ["CLIENT"],
+        },
+        {
           title: "Orders History",
-          href: "/dashboard/orders",
+          href: "/dashboard/order-management",
           icon: "History",
           roles: ["CLIENT"],
         },

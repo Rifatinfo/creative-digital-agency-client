@@ -1,5 +1,5 @@
 import AnimatedSectionTitle from '@/components/ui/modules/common/sectionTitle/AnimatedSectionTitle';
-import svgPaths from '../../about/_components/svg-itah41zkf0';
+import svgPaths from '../../About/_components/svg-itah41zkf0';
 // import { Zap, Target, Users, Lightbulb } from 'lucide-react';
 import ValueCard from './ValueCard';
 
