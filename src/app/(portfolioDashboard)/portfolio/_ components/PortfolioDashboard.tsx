@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { Project, VideoModalData } from "./types/portfolio";
-import { categories, projects } from "./data/projects";
+import { categories } from "./data/projects";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { ProjectGrid } from "./ProjectGrid";
 import { VideoModal } from "@/components/ui/modules/common/Portfolio/VideoModal";
-
+import { useEffect } from "react";
 const PortfolioDashboard = () => {
     const [selectedCategory, setSelectedCategory] = useState('All Projects')
     const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
@@ -21,6 +22,42 @@ const PortfolioDashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [isSearchExpanded, setIsSearchExpanded] = useState(false)
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+    const [projects, setProjects] = useState<Project[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+
+
+    useEffect(() => {
+        const fetchCampaigns = async () => {
+            try {
+                setLoading(true)
+
+                const res = await fetch(
+                    `http://localhost:5000/api/v1/campaign`,
+                    {
+                        cache: "no-store",
+                    }
+                )
+
+                if (!res.ok) {
+                    throw new Error("Failed to fetch campaigns")
+                }
+
+                const data = await res.json();
+
+                console.log(data?.data?.data);
+                
+                setProjects(data?.data?.data) 
+            } catch (err: any) {
+                setError(err.message)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchCampaigns();
+    }, [])
 
     const toggleCategory = (categoryName: string) => {
         setExpandedCategories((prev) =>
@@ -56,7 +93,7 @@ const PortfolioDashboard = () => {
         })
     }
 
-    const filteredProjects = projects.filter((project) => {
+    const filteredProjects = projects?.filter((project) => {
         const matchesCategory =
             selectedCategory === 'All Projects' ||
             project.category === selectedCategory
@@ -121,7 +158,7 @@ const PortfolioDashboard = () => {
                     videoUrl={selectedVideo?.url || ''}
                     title={selectedVideo?.title || ''}
                 />
-                
+
             </div>
         </div>
     );
