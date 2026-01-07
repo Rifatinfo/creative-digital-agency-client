@@ -6,6 +6,7 @@ import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getPayments } from "@/services/payment/paymentManagement";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 const PaymentManagementPage = async ({
   searchParams,
@@ -16,7 +17,7 @@ const PaymentManagementPage = async ({
   const queryString = queryStringFormatter(searchParamsObj);
   const paymentsResult = await getPayments(queryString);
   console.log(paymentsResult?.data);
-  
+
   const total = paymentsResult?.data?.meta?.total ?? 0;
   const limit = paymentsResult?.data?.meta?.limit ?? 10;
   const currentPage = Number(paymentsResult?.data?.meta?.page) || 1;
@@ -31,10 +32,9 @@ const PaymentManagementPage = async ({
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
         <PaymentsTable payment={paymentsResult?.data || []} />
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        <Suspense fallback={null}>
+          <TablePagination currentPage={currentPage} totalPages={totalPages} />
+        </Suspense>
       </Suspense>
     </div>
   );

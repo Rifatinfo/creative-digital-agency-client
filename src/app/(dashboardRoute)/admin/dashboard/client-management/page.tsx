@@ -1,4 +1,3 @@
-
 import CustomerFilter from "@/components/customer/CustomerFilter";
 import CustomerManagementHeader from "@/components/customer/CustomerManagementHeader";
 import CustomerTable from "@/components/customer/CustomerTable";
@@ -7,6 +6,7 @@ import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getCustomer } from "@/services/customer/customerManagement";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 const CustomerManagementPage = async ({
   searchParams,
@@ -17,7 +17,7 @@ const CustomerManagementPage = async ({
   const queryString = queryStringFormatter(searchParamsObj);
   const customerResult = await getCustomer(queryString);
   console.log(customerResult);
-  
+
   const total = customerResult?.data?.meta?.total ?? 0;
   const limit = customerResult?.data?.meta?.limit ?? 10;
   const currentPage = Number(customerResult?.data?.meta?.page) || 1;
@@ -34,11 +34,9 @@ const CustomerManagementPage = async ({
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
         <CustomerTable customer={customerResult?.data?.data || []} />
 
-
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        <Suspense fallback={null}>
+          <TablePagination currentPage={currentPage} totalPages={totalPages} />
+        </Suspense>
       </Suspense>
     </div>
   );

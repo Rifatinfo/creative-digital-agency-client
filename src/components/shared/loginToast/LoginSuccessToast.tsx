@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "sonner";
+export const dynamic = "force-dynamic";
 
 const LoginSuccessToast = () => {
  const searchParams = useSearchParams();

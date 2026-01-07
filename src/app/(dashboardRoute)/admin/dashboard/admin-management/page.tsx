@@ -6,6 +6,7 @@ import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getAdmins } from "@/services/admin/adminsManagement";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 const AdminAdminsManagementPage = async ({
   searchParams,
@@ -31,10 +32,9 @@ const AdminAdminsManagementPage = async ({
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
         <AdminsTable admins={adminsResult?.data?.data || []} />
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        <Suspense fallback={null}>
+          <TablePagination currentPage={currentPage} totalPages={totalPages} />
+        </Suspense>
       </Suspense>
     </div>
   );

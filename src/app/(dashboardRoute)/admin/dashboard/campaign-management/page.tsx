@@ -1,4 +1,3 @@
-
 import CampaignFilter from "@/components/campaign/CampaignFilter";
 import CampaignManagementHeader from "@/components/campaign/CampaignManagementHeader";
 import CampaignTable from "@/components/campaign/CampaignTable";
@@ -7,6 +6,7 @@ import { TableSkeleton } from "@/components/shared/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getCampaigns } from "@/services/campaign/campaignmanagement";
 import { Suspense } from "react";
+export const dynamic = "force-dynamic";
 
 const CampaignManagementPage = async ({
   searchParams,
@@ -31,10 +31,9 @@ const CampaignManagementPage = async ({
 
       <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
         <CampaignTable campaign={campaignsResult?.data?.data || []} />
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        <Suspense fallback={null}>
+          <TablePagination currentPage={currentPage} totalPages={totalPages} />
+        </Suspense>
       </Suspense>
     </div>
   );
