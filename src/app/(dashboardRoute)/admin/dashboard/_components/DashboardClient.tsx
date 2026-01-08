@@ -32,22 +32,20 @@ interface IMetaData {
 
 const DashboardClient = () => {
   const [metaData, setMetaData] = useState<IMetaData | null>(null);
+  console.log("metaData ----", metaData);
+  
   useEffect(() => {
-    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta", {
-      method: "GET",
-      credentials: "include", // important! sends cookies along with the request
-    })
+    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta")
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch meta data");
+        if (!res.ok) throw new Error(`Failed to fetch meta data: ${res.status}`);
         return res.json();
       })
       .then((result) => {
         console.log("metaData:", result?.data);
         setMetaData(result?.data);
       })
-      .catch((err) => console.error(err));
-  }, [metaData]);
-
+      .catch((err) => console.error(err.message));
+  }, []); 
 
 
   const metaCards = [
