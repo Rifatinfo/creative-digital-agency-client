@@ -24,6 +24,7 @@ const OrderManagementClient = () => {
         const paramsObj = Object.fromEntries(searchParams.entries());
         const queryString = queryStringFormatter(paramsObj);
         const result = await orderDashboard(queryString);
+        console.log(result);
         setOrderResult(result);
       } catch (err: any) {
         console.error("Failed to load orders:", err);
