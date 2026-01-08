@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProjectCard, type Project } from './ProjectCard';
 import { CategoryFilters, type FilterCategory } from './CategoryFilters';
 import AnimatedSectionTitle from '../sectionTitle/AnimatedSectionTitle';
@@ -16,14 +16,48 @@ interface PortfolioSectionProps {
 
 export function PortfolioSection({
   categories,
-  projects,
   defaultCategory = 'all'
 }: PortfolioSectionProps) {
   const [activeCategory, setActiveCategory] = useState(defaultCategory);
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  useEffect(() => {
+    const fetchCampaigns = async () => {
+      try {
+        setLoading(true)
+
+        const res = await fetch(
+          `https://creative-digital-agency-server.vercel.app/api/v1/campaign`,
+          {
+            cache: "no-store",
+          }
+        )
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch campaigns")
+        }
+
+        const data = await res.json();
+
+        console.log(data?.data?.data);
+
+        setProjects(data?.data?.data)
+      } catch (err: any) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCampaigns();
+  }, [])
 
   const filteredProjects = activeCategory === 'all'
     ? projects
     : projects.filter(project => project.category === activeCategory);
+
+
 
   return (
     <section>
@@ -52,13 +86,13 @@ export function PortfolioSection({
         ))}
 
 
-          {filteredProjects.length >= 15 && (
-            <div className="flex items-center text-center mt-10">
-              <button className="text-center bg-[#c73450] hover:bg-[#a6293e] text-white font-medium py-3 px-6 rounded-full text-sm transition flex items-center gap-2">
-                See More <span className="text-lg"><GoArrowUpRight /></span>
-              </button>
-            </div>
-          )}
+        {filteredProjects.length >= 15 && (
+          <div className="flex items-center text-center mt-10">
+            <button className="text-center bg-[#c73450] hover:bg-[#a6293e] text-white font-medium py-3 px-6 rounded-full text-sm transition flex items-center gap-2">
+              See More <span className="text-lg"><GoArrowUpRight /></span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Empty State */}

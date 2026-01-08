@@ -18,32 +18,12 @@ export const getCommonNavItems = (role: UserRole): NavSection[] => {
                     href: defaultDashboard,
                     icon: "LayoutDashboard",
                     roles: ["CLIENT", "ADMIN"],
-                },
-                {
-                    title: "My Profile",
-                    href: `/my-profile`,
-                    icon: "User",
-                    roles: ["CLIENT", "ADMIN"],
-                },
+                }
 
             ]
-        },
-        {
-            title: "Settings",
-            items: [
-                {
-                    title: "Change Password",
-                    href: "/change-password",
-                    icon: "Settings", 
-                    roles: ["CLIENT"],
-                },
-            ],
-        },
+        }
     ]
 }
-
-
-
 
 
 export const getClientNavItems = async (): Promise<NavSection[]> => {
@@ -70,59 +50,42 @@ export const getClientNavItems = async (): Promise<NavSection[]> => {
       items: [
         {
           title: "Content Development",
-          href: "/dashboard/services/content-development",
+          href: "/checkout",
           icon: "FileText",
           roles: ["CLIENT"],
         },
         {
           title: "Digital Marketing",
-          href: "/dashboard/services/digital-marketing",
+          href: "/checkout",
           icon: "TrendingUp",
           roles: ["CLIENT"],
         },
         {
           title: "Branding & Promotion",
-          href: "/dashboard/services/branding-promotion",
+          href: "/checkout",
           icon: "Palette",
           roles: ["CLIENT"],
         },
         {
           title: "Web & App Development",
-          href: "/dashboard/services/web-app",
+          href: "/checkout",
           icon: "Globe",
           roles: ["CLIENT"],
         },
         {
           title: "Event & Activation",
-          href: "/dashboard/services/event-activation",
+          href: "/checkout",
           icon: "Calendar",
           roles: ["CLIENT"],
         },
         {
           title: "Software Management",
-          href: "/dashboard/services/software-management",
+          href: "/checkout",
           icon: "Settings",
           roles: ["CLIENT"],
         },
       ],
-    },
-    {
-      title: "Account",
-      items: [
-        {
-          title: "Invoices & Payments",
-          href: "/dashboard/billing",
-          icon: "CreditCard",
-          roles: ["CLIENT"],
-        },
-        {
-          title: "Profile Settings",
-          href: "/dashboard/profile",
-          icon: "User",
-          roles: ["CLIENT"],
-        },
-      ],
-    },
+    }
   ];
 };
 

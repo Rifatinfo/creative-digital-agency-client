@@ -35,13 +35,13 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                    <Link href={"/my-profile"} className="cursor-pointer">
+                    <Link href={"/dashboard"} className="cursor-pointer">
                         <User className="mr-2 h-4 w-4" />
                         Profile
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href={"/change-password"} className="cursor-pointer">
+                    <Link href={"/dashboard"} className="cursor-pointer">
                         <Settings className="mr-2 h-4 w-4" />
                         Change Password
                     </Link>

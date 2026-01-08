@@ -1,10 +1,11 @@
 'use client'
 
 import { motion, AnimatePresence } from 'motion/react'
-import { Search, Menu, Plus, Bell, ArrowLeft, X } from 'lucide-react'
+import { Search, Menu, Plus, Bell, ArrowLeft, X, Link, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import Logo from '@/components/ui/modules/common/Logo/Logo'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 
 interface HeaderProps {
@@ -130,13 +131,15 @@ export function Header({
 
                         {/* Right Section */}
                         <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0 ">
-                            <Button
-                                variant="ghost"
-                                className="hidden sm:flex items-center gap-2 rounded-full hover:bg-[#a6293e] hover:text-white"
-                            >
-                                <Plus size={18} className="sm:w-5 sm:h-5 hover:text-white" />
-                                <span className="font-medium hidden md:inline">Sign In</span>
-                            </Button>
+                            <Link href="/login">
+                                <Button
+                                    variant="ghost"
+                                    className="hidden sm:flex items-center gap-2 rounded-full hover:bg-[#a6293e] hover:text-white"
+                                >
+                                    <Plus size={18} className="sm:w-5 sm:h-5 hover:text-white" />
+                                    <span className="font-medium hidden md:inline">Sign In</span>
+                                </Button>
+                            </Link>
 
                             <Button
                                 variant="ghost"
@@ -147,12 +150,26 @@ export function Header({
                                 <span className="absolute top-1 right-1 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#a6293e] rounded-full"></span>
                             </Button>
 
-                            <Button
-                                size="icon"
-                                className="w-7 h-7 sm:w-9 sm:h-9 bg-[#a6293e] rounded-full"
-                            >
-                                M
-                            </Button>
+
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button
+                                        size="icon"
+                                        className="w-7 h-7 sm:w-9 sm:h-9 bg-[#a6293e] rounded-full"
+                                    >
+                                        M
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-56">
+                                    <DropdownMenuItem asChild>
+                                        <Link href={"/dashboard"} className="cursor-pointer">
+                                            <User className="mr-2 h-4 w-4" />
+                                            Dashboard
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </div>
                     </motion.div>
                 )}
