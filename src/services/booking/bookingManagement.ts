@@ -3,7 +3,7 @@
 export async function getBookings(queryString?: string) {
     try {
         const response = await fetch(
-            `http://localhost:5000/api/v1/payment/all-booking${queryString ? `?${queryString}` : ""}`,
+            `https://creative-digital-agency-server.vercel.app/api/v1/payment/all-booking${queryString ? `?${queryString}` : ""}`,
             {
                 method: "GET",
                 headers: {

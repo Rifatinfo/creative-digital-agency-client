@@ -32,29 +32,32 @@ interface IMetaData {
 
 const DashboardClient = () => {
   const [metaData, setMetaData] = useState<IMetaData | null>(null);
-
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/meta", {
-      credentials: "include",
+    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta", {
+      method: "GET",
+      credentials: "include", // important! sends cookies along with the request
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch meta data");
+        return res.json();
+      })
       .then((result) => {
-        setMetaData(result.data);
-      });
-  }, []);
+        console.log("metaData:", result?.data);
+        setMetaData(result?.data);
+      })
+      .catch((err) => console.error(err));
+  }, [metaData]);
 
-  if (!metaData) {
-    return <p className="text-center mt-10">Loading...</p>;
-  }
+
 
   const metaCards = [
-    { title: "Clients", value: metaData.clientCount, color: "bg-blue-500" },
-    { title: "Bookings", value: metaData.bookingCount, color: "bg-emerald-500" },
-    { title: "Admins", value: metaData.adminCount, color: "bg-violet-500" },
-    { title: "Payments", value: metaData.paymentCount, color: "bg-orange-500" },
+    { title: "Clients", value: metaData?.clientCount ?? 0, color: "bg-blue-500" },
+    { title: "Bookings", value: metaData?.bookingCount ?? 0, color: "bg-emerald-500" },
+    { title: "Admins", value: metaData?.adminCount ?? 0, color: "bg-violet-500" },
+    { title: "Payments", value: metaData?.paymentCount ?? 0, color: "bg-orange-500" },
     {
       title: "Revenue",
-      value: metaData.totalRevenue?._sum.amount,
+      value: metaData?.totalRevenue?._sum.amount ?? 0,
       color: "bg-rose-500",
     },
   ];
@@ -85,11 +88,11 @@ const DashboardClient = () => {
       </div>
 
       <ChartAreaInteractive
-        chartData={metaData.barChartData.map((item) => ({
+        chartData={metaData?.barChartData.map((item) => ({
           date: item.month,
           enrollments: item.count,
-        }))}
-        total={metaData.paymentCount}
+        })) ?? []}
+        total={metaData?.paymentCount ?? 0}
       />
     </div>
   );

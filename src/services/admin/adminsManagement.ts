@@ -42,7 +42,7 @@ export async function createAdmin(_prevState: any, formData: FormData) {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/v1/admin/create-admin",
+            "https://creative-digital-agency-server.vercel.app/api/v1/admin/create-admin",
             {
                 method: "POST",
                 body: newFormData, // FormData (do NOT set Content-Type)
@@ -66,7 +66,7 @@ export async function createAdmin(_prevState: any, formData: FormData) {
 export async function getAdmins(queryString?: string) {
     try {
         const response = await fetch(
-            `http://localhost:5000/api/v1/admin${queryString ? `?${queryString}` : ""}`,
+            `https://creative-digital-agency-server.vercel.app/api/v1/admin${queryString ? `?${queryString}` : ""}`,
             {
                 method: "GET",
                 headers: {
@@ -134,7 +134,7 @@ export async function updateAdmin(
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/v1/admin/${id}`,
+      `https://creative-digital-agency-server.vercel.app/api/v1/admin/${id}`,
       {
         method: "PATCH",
         body: apiFormData,
