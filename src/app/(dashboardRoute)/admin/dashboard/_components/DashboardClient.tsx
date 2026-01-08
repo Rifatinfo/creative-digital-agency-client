@@ -32,23 +32,20 @@ interface IMetaData {
 
 const DashboardClient = () => {
   const [metaData, setMetaData] = useState<IMetaData | null>(null);
+  console.log("metaData ----", metaData);
+
   useEffect(() => {
-    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta", {
-      method: "GET",
-      credentials: "include", // important! sends cookies along with the request
-    })
+    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta")
       .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch meta data");
+        if (!res.ok) throw new Error(`Failed to fetch meta data: ${res.status}`);
         return res.json();
       })
       .then((result) => {
-        console.log("metaData:", result?.data);
-        setMetaData(result?.data);
+        console.log("metaData:", result?.data); // <-- correct access
+        setMetaData(result?.data); // <-- set state with actual meta data
       })
-      .catch((err) => console.error(err));
-  }, [metaData]);
-
-
+      .catch((err) => console.error(err.message));
+  }, []); // fetch once on mount
 
   const metaCards = [
     { title: "Clients", value: metaData?.clientCount ?? 0, color: "bg-blue-500" },
@@ -61,6 +58,7 @@ const DashboardClient = () => {
       color: "bg-rose-500",
     },
   ];
+
 
   return (
     <div className="space-y-6 p-6">
