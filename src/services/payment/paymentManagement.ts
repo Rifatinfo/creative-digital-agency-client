@@ -2,7 +2,7 @@
 
 export async function getPayments(queryString?: string) {
   try {
-    const url = `http://localhost:5000/api/v1/payment/all-payments${queryString ? `?${queryString}` : ""}`;
+    const url = `https://creative-digital-agency-server.vercel.app/api/v1/payment/all-payments${queryString ? `?${queryString}` : ""}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {

@@ -47,7 +47,7 @@ export async function createCustomer(_prevState: any, formData: FormData) {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/v1/user/create-customer",
+            "https://creative-digital-agency-server.vercel.app/api/v1/user/create-customer",
             {
                 method: "POST",
                 body: newFormData, // FormData (do NOT set Content-Type)
@@ -71,7 +71,7 @@ export async function createCustomer(_prevState: any, formData: FormData) {
 export async function getCustomer(queryString?: string) {
     try {
         const response = await fetch(
-            `http://localhost:5000/api/v1/user${queryString ? `?${queryString}` : ""}`,
+            `https://creative-digital-agency-server.vercel.app/api/v1/user${queryString ? `?${queryString}` : ""}`,
             {
                 method: "GET",
                 headers: {
@@ -144,7 +144,7 @@ export async function updateCustomer(
 
     try {
         const response = await fetch(
-            `http://localhost:5000/api/v1/user/${id}`,
+            `https://creative-digital-agency-server.vercel.app/api/v1/user/${id}`,
             {
                 method: "PATCH",
                 body: apiFormData,
@@ -176,7 +176,7 @@ export async function deleteCustomer(id: string) {
         // const result = await response.json();
         // return result;
         const response = await fetch(
-            `http://localhost:5000/api/v1/user/${id}`,
+            `https://creative-digital-agency-server.vercel.app/api/v1/user/${id}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -199,7 +199,7 @@ export async function deleteCustomer(id: string) {
 export async function updateCustomerStatus(id: string, status: "ACTIVE" | "INACTIVE") {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/v1/user/${id}/status`,
+      `https://creative-digital-agency-server.vercel.app/api/v1/user/${id}/status`,
       {
         method: "PATCH",
         headers: {

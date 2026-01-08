@@ -34,7 +34,7 @@ const PortfolioDashboard = () => {
                 setLoading(true)
 
                 const res = await fetch(
-                    `http://localhost:5000/api/v1/campaign`,
+                    `https://creative-digital-agency-server.vercel.app/api/v1/campaign`,
                     {
                         cache: "no-store",
                     }
