@@ -1,5 +1,5 @@
 export async function getMeta() {
-  const res = await fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta", {
+  const res = await fetch("http://localhost:5000/api/v1/meta", {
     method: "GET",
     credentials: "include",
     headers: {

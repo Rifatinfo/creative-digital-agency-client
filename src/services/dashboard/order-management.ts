@@ -6,7 +6,7 @@
 // export async function orderDashboard(cookie?: string, queryString?: string) {
 //   try {
 //     const response = await fetch(
-//       `https://creative-digital-agency-server.vercel.app/api/v1/booking/order-history${queryString ? `?${queryString}` : ""}`,
+//       `http://localhost:5000/api/v1/booking/order-history${queryString ? `?${queryString}` : ""}`,
 //       {
 //         method: "GET",
 //         headers: {
@@ -46,7 +46,7 @@
 export async function orderDashboard(queryString?: string) {
   try {
     const response = await fetch(
-      `https://creative-digital-agency-server.vercel.app/api/v1/booking/order-history${queryString ? `?${queryString}` : ""}`,
+      `http://localhost:5000/api/v1/booking/order-history${queryString ? `?${queryString}` : ""}`,
       {
         method: "GET",
         headers: {
