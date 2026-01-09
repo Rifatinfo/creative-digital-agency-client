@@ -35,7 +35,7 @@ const DashboardClient = () => {
   console.log("metaData ----", metaData);
   
   useEffect(() => {
-    fetch("https://creative-digital-agency-server.vercel.app/api/v1/meta")
+    fetch("http://localhost:5000/api/v1/meta")
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch meta data: ${res.status}`);
         return res.json();

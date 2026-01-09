@@ -42,7 +42,7 @@ export async function createCampaign(_prevState: any, formData: FormData) {
 
     try {
         const response = await fetch(
-            "https://creative-digital-agency-server.vercel.app/api/v1/campaign/create-campaign",
+            "http://localhost:5000/api/v1/campaign/create-campaign",
             {
                 method: "POST",
                 body: newFormData,
@@ -66,7 +66,7 @@ export async function createCampaign(_prevState: any, formData: FormData) {
 export async function getCampaigns(queryString?: string) {
     try {
         const response = await fetch(
-            `https://creative-digital-agency-server.vercel.app/api/v1/campaign${queryString ? `?${queryString}` : ""}`,
+            `http://localhost:5000/api/v1/campaign${queryString ? `?${queryString}` : ""}`,
             {
                 method: "GET",
                 headers: {
@@ -125,7 +125,7 @@ export async function updateCampaign(
 
   try {
     const response = await fetch(
-      `https://creative-digital-agency-server.vercel.app/api/v1/campaign/${id}`,
+      `http://localhost:5000/api/v1/campaign/${id}`,
       {
         method: "PATCH",
         body: apiFormData,
